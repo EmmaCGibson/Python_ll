@@ -1,0 +1,7297 @@
+SEQUENCE OBJECTS (1-4
+# Python-2-Final-Project-
+This is the portfolio of python code that I learned during Bisc 450C python 2.
+from Bio.Seq import Seq
+my_seq = Seq("GATCG")
+```python
+from Bio.Seq import Seq
+```
+
+
+```python
+from Bio.Seq import Seq
+```
+
+
+```python
+my_seq = Seq("GATCG")
+```
+
+
+```python
+for index, letter in enumerate(my_seq):
+    print("%i %s" % (index, letter))
+```
+
+    0 G
+    1 A
+    2 T
+    3 C
+    4 G
+
+
+
+```python
+# you can also print the length of each sequence
+print(len(my_seq))
+```
+
+    5
+
+
+
+```python
+
+```
+
+
+```python
+# can also acess different sequence postions with seq
+print(my_seq[0])
+```
+
+    G
+
+
+
+```python
+print(my_seq[4])
+```
+
+    G
+
+
+
+```python
+print(my_seq[2])
+```
+
+    T
+
+
+
+```python
+# you can also do a DOT count function
+Seq("AAAA").count("AA")
+```
+
+
+
+
+    2
+
+
+
+
+```python
+# you can also do length of seq
+my_seq = Seq("GATCGATGGGCCTATATAGGATCGAAATCGC")
+```
+
+
+```python
+len(my_seq)
+```
+
+
+
+
+    31
+
+
+
+
+```python
+# can also count number of spec letters
+my_seq.count("G")
+```
+
+
+
+
+    9
+
+
+
+
+```python
+# can also measure GC count
+100 * (my_seq.count("G") + my_seq.count("C")) / len(my_seq)
+```
+
+
+
+
+    48.38709677419355
+
+
+
+
+```python
+from Bio.SeqUtils import gc_fraction
+```
+
+
+```python
+my_seq = Seq("GATCGATGGGCCTATATAGGATCGAAATCGC")
+```
+
+
+```python
+gc_fraction(my_seq)
+```
+
+
+
+
+    0.4838709677419355
+
+
+
+
+```python
+# can also slice sequences into multi parts 
+my_seq[0::3]
+```
+
+
+
+
+    Seq('GCTGTAGTATC')
+
+
+
+
+```python
+my_seq[1::3]
+```
+
+
+
+
+    Seq('AGGCATGCAC')
+
+
+
+
+```python
+my_seq[2:3]
+```
+
+
+
+
+    Seq('T')
+
+
+
+
+```python
+#can print it backwards
+my_seq[::-1]
+```
+
+
+
+
+    Seq('CGCTAAAGCTAGGATATATCCGGGTAGCTAG')
+
+
+
+
+```python
+#have seek and want to turn it back into string
+str(my_seq)
+```
+
+
+
+
+    'GATCGATGGGCCTATATAGGATCGAAATCGC'
+
+
+
+
+```python
+# gave a name to our fasta string "placeholder"
+fasta_format_string= ">Name\n%s\n" % my_seq
+```
+
+
+```python
+print(fasta_format_string)
+```
+
+    >Name
+    GATCGATGGGCCTATATAGGATCGAAATCGC
+    
+
+
+
+```python
+# adding two scripts together
+seq1 = Seq("ACGT")
+seq2 = Seq("AACCGG")
+```
+
+
+```python
+seq1 + seq2
+```
+
+
+
+
+    Seq('ACGTAACCGG')
+
+
+
+
+```python
+seq2 + seq1
+```
+
+
+
+
+    Seq('AACCGGACGT')
+
+
+
+
+```python
+#continue to manipulate strings
+contigs = [Seq("ATG"), Seq("ATCCCG"), Seq("TTGCA")]
+```
+
+
+```python
+spacer = Seq("N" *10)
+```
+
+
+
+
+```python
+#join spacer and contigs
+spacer.join(contigs)
+```
+
+
+
+
+    Seq('ATGNNNNNNNNNNATCCCGNNNNNNNNNNTTGCA')
+
+
+
+
+```python
+dna_seq = Seq("acgtACGT")
+
+
+```
+
+
+```python
+dna_seq
+```
+
+
+
+
+    Seq('acgtACGT')
+
+
+
+
+```python
+# if case senstive can make either all uppper/lower case
+dna_seq.upper()
+```
+
+
+
+
+    Seq('ACGTACGT')
+
+
+
+
+```python
+dna_seq.lower()
+```
+
+
+
+
+    Seq('acgtacgt')
+
+
+
+
+```python
+dna_seq.upper()
+```
+
+
+
+
+    Seq('ACGTACGT')
+
+
+
+
+```python
+# can also do matching or search for something
+"gtac" in dna_seq
+```
+
+
+
+
+    False
+
+
+
+
+```python
+"GTAC" in dna_seq
+```
+
+
+
+
+    False
+
+
+
+
+```python
+dna_seq = dna_seq.upper()
+```
+
+
+```python
+"GTAC" in dna_seq
+```
+
+
+
+
+    True
+
+
+
+
+```python
+my_seq = Seq("GATCGATGGGCCTATATAGGATCGAAAATCGC")
+```
+
+
+```python
+# parie with complement
+my_seq.complement()
+```
+
+
+
+
+    Seq('CTAGCTACCCGGATATATCCTAGCTTTTAGCG')
+
+
+
+
+```python
+# reverse comp
+my_seq.reverse_complement()
+```
+
+
+
+
+    Seq('GCGATTTTCGATCCTATATAGGCCCATCGATC')
+
+
+
+
+```python
+# working with protien sequences, complement
+protein_seq = Seq("EVRNAK")
+protein_seq.complement()
+```
+
+
+
+
+    Seq('EBYNTM')
+
+
+
+
+```python
+# create a code
+coding_dna = Seq("ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG")
+```
+
+
+```python
+coding_dna
+```
+
+
+
+
+    Seq('ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG')
+
+
+
+
+```python
+# create new template 
+template_dna = coding_dna.reverse_complement()
+```
+
+
+```python
+template_dna
+```
+
+
+
+
+    Seq('CTATCGGGCACCCTTTCAGCGGCCCATTACAATGGCCAT')
+
+
+
+
+```python
+coding_dna
+```
+
+
+
+
+    Seq('ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG')
+
+
+
+
+```python
+# now transcribe it
+messenger_rna = coding_dna.transcribe()
+```
+
+
+```python
+messenger_rna
+```
+
+
+
+
+    Seq('AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG')
+
+
+
+
+```python
+# biological transcribtion with template 
+template_dna.reverse_complement().transcribe()
+```
+
+
+
+
+    Seq('AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG')
+
+
+
+
+```python
+# can do reverse transcription
+messenger_rna.back_transcribe()
+```
+
+
+
+
+    Seq('ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG')
+
+
+
+
+```python
+# you can translate
+messenger_rna
+```
+
+
+
+
+    Seq('AUGGCCAUUGUAAUGGGCCGCUGAAAGGGUGCCCGAUAG')
+
+
+
+
+```python
+messenger_rna.translate()
+
+```
+
+
+
+
+    Seq('MAIVMGR*KGAR*')
+
+
+
+
+```python
+# specify the codon tables
+coding_dna.translate(table="Vertebrate Mitochondrial")
+```
+
+
+
+
+    Seq('MAIVMGRWKGAR*')
+
+
+
+
+```python
+coding_dna.translate(table = 2)
+```
+
+
+
+
+    Seq('MAIVMGRWKGAR*')
+
+
+
+
+```python
+# translate nucletide to first inframe codon and stop
+coding_dna.translate(to_stop = True)
+```
+
+
+
+
+    Seq('MAIVMGR')
+
+
+
+
+```python
+coding_dna.translate(table = 2, to_stop=True)
+```
+
+
+
+
+    Seq('MAIVMGRWKGAR')
+
+
+
+
+```python
+# change stope codon symbol
+coding_dna.translate(table = 2, stop_symbol = "!")
+```
+
+
+
+
+    Seq('MAIVMGRWKGAR!')
+
+
+
+
+```python
+# nonstandard start codon
+gene = Seq("GTGAAAAAGATGCAATCTATCGTACTCGCATTTCCCTGGTTCTGGTCGCTCCCATGGCAGCAGCACAGGCTGCGGAATTACGTTAGTCCGTATCGCTGGACCTACAGGACCGGCCGCCACCGCCGCGCCACCATAAGAAAAGCTCCTCATGATCATCACGGCGGTCATGGTCCAGGCAAACATCACCGCTAA")
+```
+
+
+```python
+gene.translate(table = "Bacterial")
+```
+
+
+
+
+    Seq('VKKMQSIVLAFPWFWSLPWQQHRLRNYVSPYRWTYRTGRHRRATIRKAPHDHHG...HR*')
+
+
+
+
+```python
+gene.translate(table = "Bacterial", to_stop = True)
+```
+
+
+
+
+    Seq('VKKMQSIVLAFPWFWSLPWQQHRLRNYVSPYRWTYRTGRHRRATIRKAPHDHHG...HHR')
+
+
+
+
+```python
+gene.translate(table = "Bacterial", cds = True)
+```
+
+
+
+
+    Seq('MKKMQSIVLAFPWFWSLPWQQHRLRNYVSPYRWTYRTGRHRRATIRKAPHDHHG...HHR')
+
+
+
+
+```python
+from Bio.Data import CodonTable
+```
+
+
+```python
+standard_table = CodonTable.unambiguous_dna_by_name["Standard"]
+```
+
+
+```python
+mito_table = CodonTable.unambiguous_dna_by_name["Vertebrate Mitochondrial"]
+```
+
+
+```python
+#  visualize table by printing them
+print(standard_table)
+```
+
+    Table 1 Standard, SGC0
+    
+      |  T      |  C      |  A      |  G      |
+    --+---------+---------+---------+---------+--
+    T | TTT F   | TCT S   | TAT Y   | TGT C   | T
+    T | TTC F   | TCC S   | TAC Y   | TGC C   | C
+    T | TTA L   | TCA S   | TAA Stop| TGA Stop| A
+    T | TTG L(s)| TCG S   | TAG Stop| TGG W   | G
+    --+---------+---------+---------+---------+--
+    C | CTT L   | CCT P   | CAT H   | CGT R   | T
+    C | CTC L   | CCC P   | CAC H   | CGC R   | C
+    C | CTA L   | CCA P   | CAA Q   | CGA R   | A
+    C | CTG L(s)| CCG P   | CAG Q   | CGG R   | G
+    --+---------+---------+---------+---------+--
+    A | ATT I   | ACT T   | AAT N   | AGT S   | T
+    A | ATC I   | ACC T   | AAC N   | AGC S   | C
+    A | ATA I   | ACA T   | AAA K   | AGA R   | A
+    A | ATG M(s)| ACG T   | AAG K   | AGG R   | G
+    --+---------+---------+---------+---------+--
+    G | GTT V   | GCT A   | GAT D   | GGT G   | T
+    G | GTC V   | GCC A   | GAC D   | GGC G   | C
+    G | GTA V   | GCA A   | GAA E   | GGA G   | A
+    G | GTG V   | GCG A   | GAG E   | GGG G   | G
+    --+---------+---------+---------+---------+--
+
+
+
+```python
+print(mito_table)
+```
+
+    Table 2 Vertebrate Mitochondrial, SGC1
+    
+      |  T      |  C      |  A      |  G      |
+    --+---------+---------+---------+---------+--
+    T | TTT F   | TCT S   | TAT Y   | TGT C   | T
+    T | TTC F   | TCC S   | TAC Y   | TGC C   | C
+    T | TTA L   | TCA S   | TAA Stop| TGA W   | A
+    T | TTG L   | TCG S   | TAG Stop| TGG W   | G
+    --+---------+---------+---------+---------+--
+    C | CTT L   | CCT P   | CAT H   | CGT R   | T
+    C | CTC L   | CCC P   | CAC H   | CGC R   | C
+    C | CTA L   | CCA P   | CAA Q   | CGA R   | A
+    C | CTG L   | CCG P   | CAG Q   | CGG R   | G
+    --+---------+---------+---------+---------+--
+    A | ATT I(s)| ACT T   | AAT N   | AGT S   | T
+    A | ATC I(s)| ACC T   | AAC N   | AGC S   | C
+    A | ATA M(s)| ACA T   | AAA K   | AGA Stop| A
+    A | ATG M(s)| ACG T   | AAG K   | AGG Stop| G
+    --+---------+---------+---------+---------+--
+    G | GTT V   | GCT A   | GAT D   | GGT G   | T
+    G | GTC V   | GCC A   | GAC D   | GGC G   | C
+    G | GTA V   | GCA A   | GAA E   | GGA G   | A
+    G | GTG V(s)| GCG A   | GAG E   | GGG G   | G
+    --+---------+---------+---------+---------+--
+
+
+
+```python
+# can ask what stop and start codons are for mitochondrial
+mito_table.stop_codons
+```
+
+
+
+
+    ['TAA', 'TAG', 'AGA', 'AGG']
+
+
+
+
+```python
+mito_table.start_codons
+```
+
+
+
+
+    ['ATT', 'ATC', 'ATA', 'ATG', 'GTG']
+
+
+
+
+```python
+# check if seq are equal
+seq = Seq("ACGT")
+```
+
+
+```python
+"ACGT"== seq1
+```
+
+
+
+
+    True
+
+
+
+
+```python
+seq1 == "ACGT"
+```
+
+
+
+
+    True
+
+
+
+
+```python
+#unknown sequences but know length 
+unknown_seq = Seq(None, 10)
+```
+
+
+```python
+unknown_seq
+```
+
+
+
+
+    Seq(None, length=10)
+
+
+
+
+```python
+len(unknown_seq)
+```
+
+
+
+
+    10
+
+
+
+
+```python
+seq = Seq({117512683: "TTGAAACCTGAATGTGAGAGTCAGTCAAGGATAGT"}, length = 159345973)
+```
+
+
+```python
+#length of 20 but dont know what they are
+seq[1000:1020]
+```
+
+
+
+
+    Seq(None, length=20)
+
+
+
+
+```python
+seq[117512690:1175127001]
+```
+
+
+
+
+    Seq({0: 'CTGAATGTGAGAGTCAGTCAAGGATAGT'}, length=41833283)
+
+
+
+
+```python
+# can have partail information combined with unknonw
+seq[117512670:]
+```
+
+
+
+
+    Seq({13: 'TTGAAACCTGAATGTGAGAGTCAGTCAAGGATAGT'}, length=41833303)
+
+
+
+
+```python
+seq = Seq("ACGT")
+```
+
+
+```python
+undefined_seq = Seq(None, length = 10)
+```
+
+
+```python
+#combining known and unknonw
+seq + undefined_seq + seq
+```
+
+
+
+
+    Seq({0: 'ACGT', 14: 'ACGT'}, length=18)
+
+
+
+
+```python
+# change seq data
+my_seq = Seq("GCCATTGTAATGGGCCGCTGAAGGGTGCCCGA")
+```
+
+
+```python
+# now can create mutation
+from Bio.Seq import MutableSeq
+```
+
+
+```python
+mutable_seq = MutableSeq(my_seq)
+```
+
+
+```python
+mutable_seq
+```
+
+
+
+
+    MutableSeq('GCCATTGTAATGGGCCGCTGAAGGGTGCCCGA')
+
+
+
+
+```python
+mutable_seq[5] = "C"
+```
+
+
+```python
+mutable_seq
+```
+
+
+
+
+    MutableSeq('GCCATCGTAATGGGCCGCTGAAGGGTGCCCGA')
+
+
+
+
+```python
+mutable_seq.remove("T")
+```
+
+
+```python
+# removes first t
+mutable_seq
+```
+
+
+
+
+    MutableSeq('GCCACGTAATGGGCCGCTGAAGGGTGCCCGA')
+
+
+
+
+```python
+#reverse of seq
+mutable_seq.reverse()
+```
+
+
+```python
+mutable_seq
+```
+
+
+
+
+    MutableSeq('GCCACGTAATGGGCCGCTGAAGGGTGCCCGA')
+
+
+
+
+```python
+new_seq = Seq(mutable_seq)
+```
+
+
+```python
+#now back to being unmutable
+new_seq
+```
+
+
+
+
+    Seq('GCCACGTAATGGGCCGCTGAAGGGTGCCCGA')
+
+
+
+
+```python
+#if you dont want to use seq
+from Bio.Seq import reverse_complement, transcribe, back_transcribe, translate
+```
+
+
+```python
+my_string = "GCTGTTTATGGGTCGTTGGAAGGGTGGTCGTGCTAGGTGGTTAG"
+```
+
+
+```python
+reverse_complement(my_string)
+```
+
+
+
+
+    'CTAACCACCTAGCACGACCACCCTTCCAACGACCCATAAACAGC'
+
+
+
+
+```python
+transcribe(my_string)
+```
+
+
+
+
+    'GCUGUUUAUGGGUCGUUGGAAGGGUGGUCGUGCUAGGUGGUUAG'
+
+
+
+
+```python
+back_transcribe(my_string)
+```
+
+
+
+
+    'GCTGTTTATGGGTCGTTGGAAGGGTGGTCGTGCTAGGTGGTTAG'
+
+
+
+
+```python
+translate(my_string)
+```
+
+    'AVYGSLEGWSC*VV'
+SEQ ANNOTATION
+from Bio.SeqRecord import SeqRecord
+
+```
+
+
+```python
+# pull up help file
+help(SeqRecord)
+```
+
+    Help on class SeqRecord in module Bio.SeqRecord:
+    
+    class SeqRecord(builtins.object)
+     |  SeqRecord(seq, id='<unknown id>', name='<unknown name>', description='<unknown description>', dbxrefs=None, features=None, annotations=None, letter_annotations=None)
+     |  
+     |  A SeqRecord object holds a sequence and information about it.
+     |  
+     |  Main attributes:
+     |   - id          - Identifier such as a locus tag (string)
+     |   - seq         - The sequence itself (Seq object or similar)
+     |  
+     |  Additional attributes:
+     |   - name        - Sequence name, e.g. gene name (string)
+     |   - description - Additional text (string)
+     |   - dbxrefs     - List of database cross references (list of strings)
+     |   - features    - Any (sub)features defined (list of SeqFeature objects)
+     |   - annotations - Further information about the whole sequence (dictionary).
+     |     Most entries are strings, or lists of strings.
+     |   - letter_annotations - Per letter/symbol annotation (restricted
+     |     dictionary). This holds Python sequences (lists, strings
+     |     or tuples) whose length matches that of the sequence.
+     |     A typical use would be to hold a list of integers
+     |     representing sequencing quality scores, or a string
+     |     representing the secondary structure.
+     |  
+     |  You will typically use Bio.SeqIO to read in sequences from files as
+     |  SeqRecord objects.  However, you may want to create your own SeqRecord
+     |  objects directly (see the __init__ method for further details):
+     |  
+     |  >>> from Bio.Seq import Seq
+     |  >>> from Bio.SeqRecord import SeqRecord
+     |  >>> record = SeqRecord(Seq("MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF"),
+     |  ...                    id="YP_025292.1", name="HokC",
+     |  ...                    description="toxic membrane protein")
+     |  >>> print(record)
+     |  ID: YP_025292.1
+     |  Name: HokC
+     |  Description: toxic membrane protein
+     |  Number of features: 0
+     |  Seq('MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF')
+     |  
+     |  If you want to save SeqRecord objects to a sequence file, use Bio.SeqIO
+     |  for this.  For the special case where you want the SeqRecord turned into
+     |  a string in a particular file format there is a format method which uses
+     |  Bio.SeqIO internally:
+     |  
+     |  >>> print(record.format("fasta"))
+     |  >YP_025292.1 toxic membrane protein
+     |  MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |  <BLANKLINE>
+     |  
+     |  You can also do things like slicing a SeqRecord, checking its length, etc
+     |  
+     |  >>> len(record)
+     |  44
+     |  >>> edited = record[:10] + record[11:]
+     |  >>> print(edited.seq)
+     |  MKQHKAMIVAIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |  >>> print(record.seq)
+     |  MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |  
+     |  Methods defined here:
+     |  
+     |  __add__(self, other)
+     |      Add another sequence or string to this sequence.
+     |      
+     |      The other sequence can be a SeqRecord object, a Seq object (or
+     |      similar, e.g. a MutableSeq) or a plain Python string. If you add
+     |      a plain string or a Seq (like) object, the new SeqRecord will simply
+     |      have this appended to the existing data. However, any per letter
+     |      annotation will be lost:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (record.id, record.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(record.letter_annotations))
+     |      ['solexa_quality']
+     |      
+     |      >>> new = record + "ACT"
+     |      >>> print("%s %s" % (new.id, new.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNNACT
+     |      >>> print(list(new.letter_annotations))
+     |      []
+     |      
+     |      The new record will attempt to combine the annotation, but for any
+     |      ambiguities (e.g. different names) it defaults to omitting that
+     |      annotation.
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> with open("GenBank/pBAD30.gb") as handle:
+     |      ...     plasmid = SeqIO.read(handle, "gb")
+     |      >>> print("%s %i" % (plasmid.id, len(plasmid)))
+     |      pBAD30 4923
+     |      
+     |      Now let's cut the plasmid into two pieces, and join them back up the
+     |      other way round (i.e. shift the starting point on this plasmid, have
+     |      a look at the annotated features in the original file to see why this
+     |      particular split point might make sense):
+     |      
+     |      >>> left = plasmid[:3765]
+     |      >>> right = plasmid[3765:]
+     |      >>> new = right + left
+     |      >>> print("%s %i" % (new.id, len(new)))
+     |      pBAD30 4923
+     |      >>> str(new.seq) == str(right.seq + left.seq)
+     |      True
+     |      >>> len(new.features) == len(left.features) + len(right.features)
+     |      True
+     |      
+     |      When we add the left and right SeqRecord objects, their annotation
+     |      is all consistent, so it is all conserved in the new SeqRecord:
+     |      
+     |      >>> new.id == left.id == right.id == plasmid.id
+     |      True
+     |      >>> new.name == left.name == right.name == plasmid.name
+     |      True
+     |      >>> new.description == plasmid.description
+     |      True
+     |      >>> new.annotations == left.annotations == right.annotations
+     |      True
+     |      >>> new.letter_annotations == plasmid.letter_annotations
+     |      True
+     |      >>> new.dbxrefs == left.dbxrefs == right.dbxrefs
+     |      True
+     |      
+     |      However, we should point out that when we sliced the SeqRecord,
+     |      any annotations dictionary or dbxrefs list entries were lost.
+     |      You can explicitly copy them like this:
+     |      
+     |      >>> new.annotations = plasmid.annotations.copy()
+     |      >>> new.dbxrefs = plasmid.dbxrefs[:]
+     |  
+     |  __bool__(self)
+     |      Boolean value of an instance of this class (True).
+     |      
+     |      This behaviour is for backwards compatibility, since until the
+     |      __len__ method was added, a SeqRecord always evaluated as True.
+     |      
+     |      Note that in comparison, a Seq object will evaluate to False if it
+     |      has a zero length sequence.
+     |      
+     |      WARNING: The SeqRecord may in future evaluate to False when its
+     |      sequence is of zero length (in order to better match the Seq
+     |      object behaviour)!
+     |  
+     |  __bytes__(self)
+     |  
+     |  __contains__(self, char)
+     |      Implement the 'in' keyword, searches the sequence.
+     |      
+     |      e.g.
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Fasta/sweetpea.nu", "fasta")
+     |      >>> "GAATTC" in record
+     |      False
+     |      >>> "AAA" in record
+     |      True
+     |      
+     |      This essentially acts as a proxy for using "in" on the sequence:
+     |      
+     |      >>> "GAATTC" in record.seq
+     |      False
+     |      >>> "AAA" in record.seq
+     |      True
+     |      
+     |      Note that you can also use Seq objects as the query,
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> Seq("AAA") in record
+     |      True
+     |      
+     |      See also the Seq object's __contains__ method.
+     |  
+     |  __eq__(self, other)
+     |      Define the equal-to operand (not implemented).
+     |  
+     |  __format__(self, format_spec)
+     |      Return the record as a string in the specified file format.
+     |      
+     |      This method supports the Python format() function and f-strings.
+     |      The format_spec should be a lower case string supported by
+     |      Bio.SeqIO as a text output file format. Requesting a binary file
+     |      format raises a ValueError. e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> record = SeqRecord(Seq("MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF"),
+     |      ...                    id="YP_025292.1", name="HokC",
+     |      ...                    description="toxic membrane protein")
+     |      ...
+     |      >>> format(record, "fasta")
+     |      '>YP_025292.1 toxic membrane protein\nMKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF\n'
+     |      >>> print(f"Here is {record.id} in FASTA format:\n{record:fasta}")
+     |      Here is YP_025292.1 in FASTA format:
+     |      >YP_025292.1 toxic membrane protein
+     |      MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |      <BLANKLINE>
+     |      
+     |      See also the SeqRecord's format() method.
+     |  
+     |  __ge__(self, other)
+     |      Define the greater-than-or-equal-to operand (not implemented).
+     |  
+     |  __getitem__(self, index)
+     |      Return a sub-sequence or an individual letter.
+     |      
+     |      Slicing, e.g. my_record[5:10], returns a new SeqRecord for
+     |      that sub-sequence with some annotation preserved as follows:
+     |      
+     |      * The name, id and description are kept as-is.
+     |      * Any per-letter-annotations are sliced to match the requested
+     |        sub-sequence.
+     |      * Unless a stride is used, all those features which fall fully
+     |        within the subsequence are included (with their locations
+     |        adjusted accordingly). If you want to preserve any truncated
+     |        features (e.g. GenBank/EMBL source features), you must
+     |        explicitly add them to the new SeqRecord yourself.
+     |      * With the exception of any molecule type, the annotations
+     |        dictionary and the dbxrefs list are not used for the new
+     |        SeqRecord, as in general they may not apply to the
+     |        subsequence. If you want to preserve them, you must explicitly
+     |        copy them to the new SeqRecord yourself.
+     |      
+     |      Using an integer index, e.g. my_record[5] is shorthand for
+     |      extracting that letter from the sequence, my_record.seq[5].
+     |      
+     |      For example, consider this short protein and its secondary
+     |      structure as encoded by the PDB (e.g. H for alpha helices),
+     |      plus a simple feature for its histidine self phosphorylation
+     |      site:
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> from Bio.SeqFeature import SeqFeature, SimpleLocation
+     |      >>> rec = SeqRecord(Seq("MAAGVKQLADDRTLLMAGVSHDLRTPLTRIRLAT"
+     |      ...                     "EMMSEQDGYLAESINKDIEECNAIIEQFIDYLR"),
+     |      ...                 id="1JOY", name="EnvZ",
+     |      ...                 description="Homodimeric domain of EnvZ from E. coli")
+     |      >>> rec.letter_annotations["secondary_structure"] = "  S  SSSSSSHHHHHTTTHHHHHHHHHHHHHHHHHHHHHHTHHHHHHHHHHHHHHHHHHHHHTT  "
+     |      >>> rec.features.append(SeqFeature(SimpleLocation(20, 21),
+     |      ...                     type = "Site"))
+     |      
+     |      Now let's have a quick look at the full record,
+     |      
+     |      >>> print(rec)
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 1
+     |      Per letter annotation for: secondary_structure
+     |      Seq('MAAGVKQLADDRTLLMAGVSHDLRTPLTRIRLATEMMSEQDGYLAESINKDIEE...YLR')
+     |      >>> rec.letter_annotations["secondary_structure"]
+     |      '  S  SSSSSSHHHHHTTTHHHHHHHHHHHHHHHHHHHHHHTHHHHHHHHHHHHHHHHHHHHHTT  '
+     |      >>> print(rec.features[0].location)
+     |      [20:21]
+     |      
+     |      Now let's take a sub sequence, here chosen as the first (fractured)
+     |      alpha helix which includes the histidine phosphorylation site:
+     |      
+     |      >>> sub = rec[11:41]
+     |      >>> print(sub)
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 1
+     |      Per letter annotation for: secondary_structure
+     |      Seq('RTLLMAGVSHDLRTPLTRIRLATEMMSEQD')
+     |      >>> sub.letter_annotations["secondary_structure"]
+     |      'HHHHHTTTHHHHHHHHHHHHHHHHHHHHHH'
+     |      >>> print(sub.features[0].location)
+     |      [9:10]
+     |      
+     |      You can also of course omit the start or end values, for
+     |      example to get the first ten letters only:
+     |      
+     |      >>> print(rec[:10])
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 0
+     |      Per letter annotation for: secondary_structure
+     |      Seq('MAAGVKQLAD')
+     |      
+     |      Or for the last ten letters:
+     |      
+     |      >>> print(rec[-10:])
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 0
+     |      Per letter annotation for: secondary_structure
+     |      Seq('IIEQFIDYLR')
+     |      
+     |      If you omit both, then you get a copy of the original record (although
+     |      lacking the annotations and dbxrefs):
+     |      
+     |      >>> print(rec[:])
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 1
+     |      Per letter annotation for: secondary_structure
+     |      Seq('MAAGVKQLADDRTLLMAGVSHDLRTPLTRIRLATEMMSEQDGYLAESINKDIEE...YLR')
+     |      
+     |      Finally, indexing with a simple integer is shorthand for pulling out
+     |      that letter from the sequence directly:
+     |      
+     |      >>> rec[5]
+     |      'K'
+     |      >>> rec.seq[5]
+     |      'K'
+     |  
+     |  __gt__(self, other)
+     |      Define the greater-than operand (not implemented).
+     |  
+     |  __init__(self, seq, id='<unknown id>', name='<unknown name>', description='<unknown description>', dbxrefs=None, features=None, annotations=None, letter_annotations=None)
+     |      Create a SeqRecord.
+     |      
+     |      Arguments:
+     |       - seq         - Sequence, required (Seq or MutableSeq)
+     |       - id          - Sequence identifier, recommended (string)
+     |       - name        - Sequence name, optional (string)
+     |       - description - Sequence description, optional (string)
+     |       - dbxrefs     - Database cross references, optional (list of strings)
+     |       - features    - Any (sub)features, optional (list of SeqFeature objects)
+     |       - annotations - Dictionary of annotations for the whole sequence
+     |       - letter_annotations - Dictionary of per-letter-annotations, values
+     |         should be strings, list or tuples of the same length as the full
+     |         sequence.
+     |      
+     |      You will typically use Bio.SeqIO to read in sequences from files as
+     |      SeqRecord objects.  However, you may want to create your own SeqRecord
+     |      objects directly.
+     |      
+     |      Note that while an id is optional, we strongly recommend you supply a
+     |      unique id string for each record.  This is especially important
+     |      if you wish to write your sequences to a file.
+     |      
+     |      You can create a 'blank' SeqRecord object, and then populate the
+     |      attributes later.
+     |  
+     |  __iter__(self)
+     |      Iterate over the letters in the sequence.
+     |      
+     |      For example, using Bio.SeqIO to read in a protein FASTA file:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Fasta/loveliesbleeding.pro", "fasta")
+     |      >>> for amino in record:
+     |      ...     print(amino)
+     |      ...     if amino == "L": break
+     |      X
+     |      A
+     |      G
+     |      L
+     |      >>> print(record.seq[3])
+     |      L
+     |      
+     |      This is just a shortcut for iterating over the sequence directly:
+     |      
+     |      >>> for amino in record.seq:
+     |      ...     print(amino)
+     |      ...     if amino == "L": break
+     |      X
+     |      A
+     |      G
+     |      L
+     |      >>> print(record.seq[3])
+     |      L
+     |      
+     |      Note that this does not facilitate iteration together with any
+     |      per-letter-annotation.  However, you can achieve that using the
+     |      python zip function on the record (or its sequence) and the relevant
+     |      per-letter-annotation:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> rec = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (rec.id, rec.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(rec.letter_annotations))
+     |      ['solexa_quality']
+     |      >>> for nuc, qual in zip(rec, rec.letter_annotations["solexa_quality"]):
+     |      ...     if qual > 35:
+     |      ...         print("%s %i" % (nuc, qual))
+     |      A 40
+     |      C 39
+     |      G 38
+     |      T 37
+     |      A 36
+     |      
+     |      You may agree that using zip(rec.seq, ...) is more explicit than using
+     |      zip(rec, ...) as shown above.
+     |  
+     |  __le__(self, other)
+     |      Define the less-than-or-equal-to operand (not implemented).
+     |  
+     |  __len__(self)
+     |      Return the length of the sequence.
+     |      
+     |      For example, using Bio.SeqIO to read in a FASTA nucleotide file:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Fasta/sweetpea.nu", "fasta")
+     |      >>> len(record)
+     |      309
+     |      >>> len(record.seq)
+     |      309
+     |  
+     |  __lt__(self, other)
+     |      Define the less-than operand (not implemented).
+     |  
+     |  __ne__(self, other)
+     |      Define the not-equal-to operand (not implemented).
+     |  
+     |  __radd__(self, other)
+     |      Add another sequence or string to this sequence (from the left).
+     |      
+     |      This method handles adding a Seq object (or similar, e.g. MutableSeq)
+     |      or a plain Python string (on the left) to a SeqRecord (on the right).
+     |      See the __add__ method for more details, but for example:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (record.id, record.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(record.letter_annotations))
+     |      ['solexa_quality']
+     |      
+     |      >>> new = "ACT" + record
+     |      >>> print("%s %s" % (new.id, new.seq))
+     |      slxa_0001_1_0001_01 ACTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(new.letter_annotations))
+     |      []
+     |  
+     |  __repr__(self)
+     |      Return a concise summary of the record for debugging (string).
+     |      
+     |      The python built in function repr works by calling the object's __repr__
+     |      method.  e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> rec = SeqRecord(Seq("MASRGVNKVILVGNLGQDPEVRYMPNGGAVANITLATSESWRDKAT"
+     |      ...                     "GEMKEQTEWHRVVLFGKLAEVASEYLRKGSQVYIEGQLRTRKWTDQ"
+     |      ...                     "SGQDRYTTEVVVNVGGTMQMLGGRQGGGAPAGGNIGGGQPQGGWGQ"
+     |      ...                     "PQQPQGGNQFSGGAQSRPQQSAPAAPSNEPPMDFDDDIPF"),
+     |      ...                 id="NP_418483.1", name="b4059",
+     |      ...                 description="ssDNA-binding protein",
+     |      ...                 dbxrefs=["ASAP:13298", "GI:16131885", "GeneID:948570"])
+     |      >>> print(repr(rec))
+     |      SeqRecord(seq=Seq('MASRGVNKVILVGNLGQDPEVRYMPNGGAVANITLATSESWRDKATGEMKEQTE...IPF'), id='NP_418483.1', name='b4059', description='ssDNA-binding protein', dbxrefs=['ASAP:13298', 'GI:16131885', 'GeneID:948570'])
+     |      
+     |      At the python prompt you can also use this shorthand:
+     |      
+     |      >>> rec
+     |      SeqRecord(seq=Seq('MASRGVNKVILVGNLGQDPEVRYMPNGGAVANITLATSESWRDKATGEMKEQTE...IPF'), id='NP_418483.1', name='b4059', description='ssDNA-binding protein', dbxrefs=['ASAP:13298', 'GI:16131885', 'GeneID:948570'])
+     |      
+     |      Note that long sequences are shown truncated. Also note that any
+     |      annotations, letter_annotations and features are not shown (as they
+     |      would lead to a very long string).
+     |  
+     |  __str__(self)
+     |      Return a human readable summary of the record and its annotation (string).
+     |      
+     |      The python built in function str works by calling the object's __str__
+     |      method.  e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> record = SeqRecord(Seq("MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF"),
+     |      ...                    id="YP_025292.1", name="HokC",
+     |      ...                    description="toxic membrane protein, small")
+     |      >>> print(str(record))
+     |      ID: YP_025292.1
+     |      Name: HokC
+     |      Description: toxic membrane protein, small
+     |      Number of features: 0
+     |      Seq('MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF')
+     |      
+     |      In this example you don't actually need to call str explicitly, as the
+     |      print command does this automatically:
+     |      
+     |      >>> print(record)
+     |      ID: YP_025292.1
+     |      Name: HokC
+     |      Description: toxic membrane protein, small
+     |      Number of features: 0
+     |      Seq('MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF')
+     |      
+     |      Note that long sequences are shown truncated.
+     |  
+     |  count(self, sub, start=None, end=None)
+     |      Return the number of non-overlapping occurrences of sub in seq[start:end].
+     |      
+     |      Optional arguments start and end are interpreted as in slice notation.
+     |      This method behaves as the count method of Python strings.
+     |  
+     |  format(self, format)
+     |      Return the record as a string in the specified file format.
+     |      
+     |      The format should be a lower case string supported as an output
+     |      format by Bio.SeqIO, which is used to turn the SeqRecord into a
+     |      string.  e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> record = SeqRecord(Seq("MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF"),
+     |      ...                    id="YP_025292.1", name="HokC",
+     |      ...                    description="toxic membrane protein")
+     |      >>> record.format("fasta")
+     |      '>YP_025292.1 toxic membrane protein\nMKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF\n'
+     |      >>> print(record.format("fasta"))
+     |      >YP_025292.1 toxic membrane protein
+     |      MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |      <BLANKLINE>
+     |      
+     |      The Python print function automatically appends a new line, meaning
+     |      in this example a blank line is shown.  If you look at the string
+     |      representation you can see there is a trailing new line (shown as
+     |      slash n) which is important when writing to a file or if
+     |      concatenating multiple sequence strings together.
+     |      
+     |      Note that this method will NOT work on every possible file format
+     |      supported by Bio.SeqIO (e.g. some are for multiple sequences only,
+     |      and binary formats are not supported).
+     |  
+     |  islower(self)
+     |      Return True if all ASCII characters in the record's sequence are lowercase.
+     |      
+     |      If there are no cased characters, the method returns False.
+     |  
+     |  isupper(self)
+     |      Return True if all ASCII characters in the record's sequence are uppercase.
+     |      
+     |      If there are no cased characters, the method returns False.
+     |  
+     |  lower(self)
+     |      Return a copy of the record with a lower case sequence.
+     |      
+     |      All the annotation is preserved unchanged. e.g.
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Fasta/aster.pro", "fasta")
+     |      >>> print(record.format("fasta"))
+     |      >gi|3298468|dbj|BAA31520.1| SAMIPF
+     |      GGHVNPAVTFGAFVGGNITLLRGIVYIIAQLLGSTVACLLLKFVTNDMAVGVFSLSAGVG
+     |      VTNALVFEIVMTFGLVYTVYATAIDPKKGSLGTIAPIAIGFIVGANI
+     |      <BLANKLINE>
+     |      >>> print(record.lower().format("fasta"))
+     |      >gi|3298468|dbj|BAA31520.1| SAMIPF
+     |      gghvnpavtfgafvggnitllrgivyiiaqllgstvaclllkfvtndmavgvfslsagvg
+     |      vtnalvfeivmtfglvytvyataidpkkgslgtiapiaigfivgani
+     |      <BLANKLINE>
+     |      
+     |      To take a more annotation rich example,
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> old = SeqIO.read("EMBL/TRBG361.embl", "embl")
+     |      >>> len(old.features)
+     |      3
+     |      >>> new = old.lower()
+     |      >>> len(old.features) == len(new.features)
+     |      True
+     |      >>> old.annotations["organism"] == new.annotations["organism"]
+     |      True
+     |      >>> old.dbxrefs == new.dbxrefs
+     |      True
+     |  
+     |  reverse_complement(self, id=False, name=False, description=False, features=True, annotations=False, letter_annotations=True, dbxrefs=False)
+     |      Return new SeqRecord with reverse complement sequence.
+     |      
+     |      By default the new record does NOT preserve the sequence identifier,
+     |      name, description, general annotation or database cross-references -
+     |      these are unlikely to apply to the reversed sequence.
+     |      
+     |      You can specify the returned record's id, name and description as
+     |      strings, or True to keep that of the parent, or False for a default.
+     |      
+     |      You can specify the returned record's features with a list of
+     |      SeqFeature objects, or True to keep that of the parent, or False to
+     |      omit them. The default is to keep the original features (with the
+     |      strand and locations adjusted).
+     |      
+     |      You can also specify both the returned record's annotations and
+     |      letter_annotations as dictionaries, True to keep that of the parent,
+     |      or False to omit them. The default is to keep the original
+     |      annotations (with the letter annotations reversed).
+     |      
+     |      To show what happens to the pre-letter annotations, consider an
+     |      example Solexa variant FASTQ file with a single entry, which we'll
+     |      read in as a SeqRecord:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (record.id, record.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(record.letter_annotations))
+     |      ['solexa_quality']
+     |      >>> print(record.letter_annotations["solexa_quality"])
+     |      [40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5]
+     |      
+     |      Now take the reverse complement, here we explicitly give a new
+     |      identifier (the old identifier with a suffix):
+     |      
+     |      >>> rc_record = record.reverse_complement(id=record.id + "_rc")
+     |      >>> print("%s %s" % (rc_record.id, rc_record.seq))
+     |      slxa_0001_1_0001_01_rc NNNNNNACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT
+     |      
+     |      Notice that the per-letter-annotations have also been reversed,
+     |      although this may not be appropriate for all cases.
+     |      
+     |      >>> print(rc_record.letter_annotations["solexa_quality"])
+     |      [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+     |      
+     |      Now for the features, we need a different example. Parsing a GenBank
+     |      file is probably the easiest way to get an nice example with features
+     |      in it...
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> with open("GenBank/pBAD30.gb") as handle:
+     |      ...     plasmid = SeqIO.read(handle, "gb")
+     |      >>> print("%s %i" % (plasmid.id, len(plasmid)))
+     |      pBAD30 4923
+     |      >>> plasmid.seq
+     |      Seq('GCTAGCGGAGTGTATACTGGCTTACTATGTTGGCACTGATGAGGGTGTCAGTGA...ATG')
+     |      >>> len(plasmid.features)
+     |      13
+     |      
+     |      Now, let's take the reverse complement of this whole plasmid:
+     |      
+     |      >>> rc_plasmid = plasmid.reverse_complement(id=plasmid.id+"_rc")
+     |      >>> print("%s %i" % (rc_plasmid.id, len(rc_plasmid)))
+     |      pBAD30_rc 4923
+     |      >>> rc_plasmid.seq
+     |      Seq('CATGGGCAAATATTATACGCAAGGCGACAAGGTGCTGATGCCGCTGGCGATTCA...AGC')
+     |      >>> len(rc_plasmid.features)
+     |      13
+     |      
+     |      Let's compare the first CDS feature - it has gone from being the
+     |      second feature (index 1) to the second last feature (index -2), its
+     |      strand has changed, and the location switched round.
+     |      
+     |      >>> print(plasmid.features[1])
+     |      type: CDS
+     |      location: [1081:1960](-)
+     |      qualifiers:
+     |          Key: label, Value: ['araC']
+     |          Key: note, Value: ['araC regulator of the arabinose BAD promoter']
+     |          Key: vntifkey, Value: ['4']
+     |      <BLANKLINE>
+     |      >>> print(rc_plasmid.features[-2])
+     |      type: CDS
+     |      location: [2963:3842](+)
+     |      qualifiers:
+     |          Key: label, Value: ['araC']
+     |          Key: note, Value: ['araC regulator of the arabinose BAD promoter']
+     |          Key: vntifkey, Value: ['4']
+     |      <BLANKLINE>
+     |      
+     |      You can check this new location, based on the length of the plasmid:
+     |      
+     |      >>> len(plasmid) - 1081
+     |      3842
+     |      >>> len(plasmid) - 1960
+     |      2963
+     |      
+     |      Note that if the SeqFeature annotation includes any strand specific
+     |      information (e.g. base changes for a SNP), this information is not
+     |      amended, and would need correction after the reverse complement.
+     |      
+     |      Note trying to reverse complement a protein SeqRecord raises an
+     |      exception:
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> protein_rec = SeqRecord(Seq("MAIVMGR"), id="Test",
+     |      ...                         annotations={"molecule_type": "protein"})
+     |      >>> protein_rec.reverse_complement()
+     |      Traceback (most recent call last):
+     |         ...
+     |      ValueError: Proteins do not have complements!
+     |      
+     |      If you have RNA without any U bases, it must be annotated as RNA
+     |      otherwise it will be treated as DNA by default with A mapped to T:
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> rna1 = SeqRecord(Seq("ACG"), id="Test")
+     |      >>> rna2 = SeqRecord(Seq("ACG"), id="Test", annotations={"molecule_type": "RNA"})
+     |      >>> print(rna1.reverse_complement(id="RC", description="unk").format("fasta"))
+     |      >RC unk
+     |      CGT
+     |      <BLANKLINE>
+     |      >>> print(rna2.reverse_complement(id="RC", description="RNA").format("fasta"))
+     |      >RC RNA
+     |      CGU
+     |      <BLANKLINE>
+     |      
+     |      Also note you can reverse complement a SeqRecord using a MutableSeq:
+     |      
+     |      >>> from Bio.Seq import MutableSeq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> rec = SeqRecord(MutableSeq("ACGT"), id="Test")
+     |      >>> rec.seq[0] = "T"
+     |      >>> print("%s %s" % (rec.id, rec.seq))
+     |      Test TCGT
+     |      >>> rc = rec.reverse_complement(id=True)
+     |      >>> print("%s %s" % (rc.id, rc.seq))
+     |      Test ACGA
+     |  
+     |  translate(self, table='Standard', stop_symbol='*', to_stop=False, cds=False, gap=None, id=False, name=False, description=False, features=False, annotations=False, letter_annotations=False, dbxrefs=False)
+     |      Return new SeqRecord with translated sequence.
+     |      
+     |      This calls the record's .seq.translate() method (which describes
+     |      the translation related arguments, like table for the genetic code),
+     |      
+     |      By default the new record does NOT preserve the sequence identifier,
+     |      name, description, general annotation or database cross-references -
+     |      these are unlikely to apply to the translated sequence.
+     |      
+     |      You can specify the returned record's id, name and description as
+     |      strings, or True to keep that of the parent, or False for a default.
+     |      
+     |      You can specify the returned record's features with a list of
+     |      SeqFeature objects, or False (default) to omit them.
+     |      
+     |      You can also specify both the returned record's annotations and
+     |      letter_annotations as dictionaries, True to keep that of the parent
+     |      (annotations only), or False (default) to omit them.
+     |      
+     |      e.g. Loading a FASTA gene and translating it,
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> gene_record = SeqIO.read("Fasta/sweetpea.nu", "fasta")
+     |      >>> print(gene_record.format("fasta"))
+     |      >gi|3176602|gb|U78617.1|LOU78617 Lathyrus odoratus phytochrome A (PHYA) gene, partial cds
+     |      CAGGCTGCGCGGTTTCTATTTATGAAGAACAAGGTCCGTATGATAGTTGATTGTCATGCA
+     |      AAACATGTGAAGGTTCTTCAAGACGAAAAACTCCCATTTGATTTGACTCTGTGCGGTTCG
+     |      ACCTTAAGAGCTCCACATAGTTGCCATTTGCAGTACATGGCTAACATGGATTCAATTGCT
+     |      TCATTGGTTATGGCAGTGGTCGTCAATGACAGCGATGAAGATGGAGATAGCCGTGACGCA
+     |      GTTCTACCACAAAAGAAAAAGAGACTTTGGGGTTTGGTAGTTTGTCATAACACTACTCCG
+     |      AGGTTTGTT
+     |      <BLANKLINE>
+     |      
+     |      And now translating the record, specifying the new ID and description:
+     |      
+     |      >>> protein_record = gene_record.translate(table=11,
+     |      ...                                        id="phya",
+     |      ...                                        description="translation")
+     |      >>> print(protein_record.format("fasta"))
+     |      >phya translation
+     |      QAARFLFMKNKVRMIVDCHAKHVKVLQDEKLPFDLTLCGSTLRAPHSCHLQYMANMDSIA
+     |      SLVMAVVVNDSDEDGDSRDAVLPQKKKRLWGLVVCHNTTPRFV
+     |      <BLANKLINE>
+     |  
+     |  upper(self)
+     |      Return a copy of the record with an upper case sequence.
+     |      
+     |      All the annotation is preserved unchanged. e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> record = SeqRecord(Seq("acgtACGT"), id="Test",
+     |      ...                    description = "Made up for this example")
+     |      >>> record.letter_annotations["phred_quality"] = [1, 2, 3, 4, 5, 6, 7, 8]
+     |      >>> print(record.upper().format("fastq"))
+     |      @Test Made up for this example
+     |      ACGTACGT
+     |      +
+     |      "#$%&'()
+     |      <BLANKLINE>
+     |      
+     |      Naturally, there is a matching lower method:
+     |      
+     |      >>> print(record.lower().format("fastq"))
+     |      @Test Made up for this example
+     |      acgtacgt
+     |      +
+     |      "#$%&'()
+     |      <BLANKLINE>
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |  
+     |  letter_annotations
+     |      Dictionary of per-letter-annotation for the sequence.
+     |      
+     |      For example, this can hold quality scores used in FASTQ or QUAL files.
+     |      Consider this example using Bio.SeqIO to read in an example Solexa
+     |      variant FASTQ file as a SeqRecord:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (record.id, record.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(record.letter_annotations))
+     |      ['solexa_quality']
+     |      >>> print(record.letter_annotations["solexa_quality"])
+     |      [40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5]
+     |      
+     |      The letter_annotations get sliced automatically if you slice the
+     |      parent SeqRecord, for example taking the last ten bases:
+     |      
+     |      >>> sub_record = record[-10:]
+     |      >>> print("%s %s" % (sub_record.id, sub_record.seq))
+     |      slxa_0001_1_0001_01 ACGTNNNNNN
+     |      >>> print(sub_record.letter_annotations["solexa_quality"])
+     |      [4, 3, 2, 1, 0, -1, -2, -3, -4, -5]
+     |      
+     |      Any python sequence (i.e. list, tuple or string) can be recorded in
+     |      the SeqRecord's letter_annotations dictionary as long as the length
+     |      matches that of the SeqRecord's sequence.  e.g.
+     |      
+     |      >>> len(sub_record.letter_annotations)
+     |      1
+     |      >>> sub_record.letter_annotations["dummy"] = "abcdefghij"
+     |      >>> len(sub_record.letter_annotations)
+     |      2
+     |      
+     |      You can delete entries from the letter_annotations dictionary as usual:
+     |      
+     |      >>> del sub_record.letter_annotations["solexa_quality"]
+     |      >>> sub_record.letter_annotations
+     |      {'dummy': 'abcdefghij'}
+     |      
+     |      You can completely clear the dictionary easily as follows:
+     |      
+     |      >>> sub_record.letter_annotations = {}
+     |      >>> sub_record.letter_annotations
+     |      {}
+     |      
+     |      Note that if replacing the record's sequence with a sequence of a
+     |      different length you must first clear the letter_annotations dict.
+     |  
+     |  seq
+     |      The sequence itself, as a Seq or MutableSeq object.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  __hash__ = None
+    
+
+
+
+```python
+# create seq record
+from Bio.Seq import Seq
+```
+
+
+```python
+simple_seq = Seq("GATC")
+```
+
+
+```python
+simple_seq_r = SeqRecord(simple_seq)
+```
+
+
+```python
+simple_seq_r
+```
+
+
+
+
+    SeqRecord(seq=Seq('GATC'), id='<unknown id>', name='<unknown name>', description='<unknown description>', dbxrefs=[])
+
+
+
+
+```python
+# can pass the id to it
+simple_seq_r.id = "AC12345"
+```
+
+
+```python
+simple_seq_r.description = "Made up sequence for the VBD computational biology class"
+```
+
+
+```python
+print(simple_seq_r.description)
+```
+
+    Made up sequence for the VBD computational biology class
+
+
+
+```python
+simple_seq_r.seq
+```
+
+
+
+
+    Seq('GATC')
+
+
+
+
+```python
+# now we have lots of info on it, way to story seq with annotation
+simple_seq_r
+```
+
+
+
+
+    SeqRecord(seq=Seq('GATC'), id='AC12345', name='<unknown name>', description='Made up sequence for the VBD computational biology class', dbxrefs=[])
+
+
+
+
+```python
+simple_seq_r.annotations["evidence"] = "None. this is just example"
+```
+
+
+```python
+print(simple_seq_r.annotations["evidence"])
+```
+
+    None. this is just example
+
+
+
+```python
+#all stored in simple seq are but hidden
+simple_seq_r
+```
+
+
+
+
+    SeqRecord(seq=Seq('GATC'), id='AC12345', name='<unknown name>', description='Made up sequence for the VBD computational biology class', dbxrefs=[])
+
+
+
+
+```python
+#per letter annotations
+simple_seq_r.letter_annotations["phred_quality"] = [40, 40, 38, 30]
+```
+
+
+```python
+print(simple_seq_r.letter_annotations)
+```
+
+    {'phred_quality': [40, 40, 38, 30]}
+
+
+
+```python
+# https://raw.githubusercontent.com/biopython/biopython/master/Tests/GenBank/NC_005816.fna
+```
+
+
+```python
+from Bio import SeqIO
+```
+
+
+```python
+record = SeqIO.read("NC_005816.fna.txt", "fasta")
+```
+# now we have all these annotations
+record
+
+```python
+record.seq
+```
+
+
+
+
+    Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG')
+
+
+
+
+```python
+record.id
+```
+
+
+
+
+    'gi|45478711|ref|NC_005816.1|'
+
+
+
+
+```python
+record.description
+```
+
+
+
+
+    'gi|45478711|ref|NC_005816.1| Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence'
+
+
+
+
+```python
+# you can only get info that is provided in fasta file
+record.dbxrefs
+```
+
+
+
+
+    []
+
+
+
+
+```python
+record.annotations
+```
+
+
+
+
+    {}
+
+
+
+
+```python
+record.features
+```
+
+
+
+
+    []
+
+
+
+
+```python
+#https://raw.githubusercontent.com/biopython/biopython/master/Tests/GenBank/NC_005816.gb
+```
+
+
+```python
+record = SeqIO.read("NC_005816.gb.txt", "genbank")
+```
+
+
+```python
+record
+```
+
+
+
+
+    SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=['Project:58037'])
+
+
+
+
+```python
+record.seq
+```
+
+
+
+
+    Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG')
+
+
+
+
+```python
+record.id
+```
+
+
+
+
+    'NC_005816.1'
+
+
+
+
+```python
+record.name
+```
+
+
+
+
+    'NC_005816'
+
+
+
+
+```python
+record.description
+```
+
+
+
+
+    'Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence'
+
+
+
+
+```python
+# genbank doesnt give rec annotations for their files
+record.letter_annotations
+```
+
+
+
+
+    {}
+
+
+
+
+```python
+len(record.annotations)
+```
+
+
+
+
+    13
+
+
+
+
+```python
+# where dna is from
+record.annotations["source"]
+```
+
+
+
+
+    'Yersinia pestis biovar Microtus str. 91001'
+
+
+
+
+```python
+record.dbxrefs
+```
+
+
+
+
+    ['Project:58037']
+
+
+
+
+```python
+# how many featurs in table
+len(record.features)
+```
+
+
+
+
+    41
+
+
+
+
+```python
+from Bio import SeqFeature
+```
+
+
+```python
+start_pos = SeqFeature.AfterPosition(5)
+```
+
+
+```python
+end_pos = SeqFeature.BetweenPosition(9, left = 8, right = 9)
+```
+
+
+```python
+# can annotate and give Ambiguous answers (not written in stone info) ^^^
+
+```
+
+
+```python
+# set location
+my_location = SeqFeature.SimpleLocation(start_pos, end_pos)
+```
+
+
+```python
+print(my_location)
+```
+
+    [>5:(8^9)]
+
+
+
+```python
+my_location.start
+```
+
+
+
+
+    AfterPosition(5)
+
+
+
+
+```python
+my_location.end
+```
+
+
+
+
+    BetweenPosition(9, left=8, right=9)
+
+
+
+
+```python
+# want to shorten it 
+int(my_location.end)
+```
+
+
+
+
+    9
+
+
+
+
+```python
+int(my_location.start)
+```
+
+
+
+
+    5
+
+
+
+
+```python
+exact_location = SeqFeature.SimpleLocation(5,9)
+```
+
+
+```python
+print(exact_location)
+```
+
+    [5:9]
+
+
+
+```python
+exact_location.start
+```
+
+
+
+
+    ExactPosition(5)
+
+
+
+
+```python
+# moding and changning anotations
+```
+
+
+```python
+record = SeqIO.read("NC_005816.gb.txt", "genbank")
+```
+
+
+```python
+record
+```
+
+
+
+
+    SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=['Project:58037'])
+
+
+
+
+```python
+len(record)
+```
+
+
+
+
+    9609
+
+
+
+
+```python
+len(record.features)
+```
+
+
+
+
+    41
+
+
+
+
+```python
+record.dbxrefs
+```
+
+
+
+
+    ['Project:58037']
+
+
+
+
+```python
+# all things we can pull up
+record.annotations.keys()
+```
+
+
+
+
+    dict_keys(['molecule_type', 'topology', 'data_file_division', 'date', 'accessions', 'sequence_version', 'gi', 'keywords', 'source', 'organism', 'taxonomy', 'references', 'comment'])
+
+
+
+
+```python
+# since circular genome, who is to say where start and stop is. we can shift it
+shifted = record[2000:] + record[:2000]
+```
+
+
+```python
+shifted
+```
+
+
+
+
+    SeqRecord(seq=Seq('GATACGCAGTCATATTTTTTACACAATTCTCTAATCCCGACAAGGTCGTAGGTC...GGA'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=[])
+
+
+
+
+```python
+#havent changed info but chnaged start
+len(shifted)
+```
+
+
+
+
+    9609
+
+
+
+
+```python
+# lost a feature
+len(shifted.features)
+```
+
+
+
+
+    40
+
+
+
+
+```python
+shifted.annotations.keys()
+```
+
+
+
+
+    dict_keys(['molecule_type'])
+
+
+
+
+```python
+#nothing anymore
+shifted.dbxrefs
+```
+
+
+
+
+    []
+
+
+
+
+```python
+shifted.dbxrefs = record.dbxrefs[:]
+```
+
+
+```python
+shifted.dbxrefs
+```
+
+
+
+
+    ['Project:58037']
+
+
+
+
+```python
+shifted.annotations = record.annotations.copy()
+```
+
+
+```python
+shifted.annotations.keys()
+```
+
+
+
+
+    dict_keys(['molecule_type', 'topology', 'data_file_division', 'date', 'accessions', 'sequence_version', 'gi', 'keywords', 'source', 'organism', 'taxonomy', 'references', 'comment'])
+
+
+
+
+```python
+record
+```
+
+
+
+
+    SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=['Project:58037'])
+
+
+
+
+```python
+# print first value as string, then present next for as integers 
+print("%s %i %i %i %i" % (record.id, len(record), len(record.features), len(record.dbxrefs), len(record.annotations)))
+```
+
+    NC_005816.1 9609 41 1 13
+
+
+
+```python
+rc = record.reverse_complement(id = "Testing")
+```
+
+
+```python
+rc
+```
+
+
+
+
+    SeqRecord(seq=Seq('CAGGGGTCGGGGTACGCATTCCCTCATGCGTCAATATTATCTGGCATTGCGATG...ACA'), id='Testing', name='<unknown name>', description='<unknown description>', dbxrefs=[])
+
+
+
+
+```python
+#make sure not to do duplicates of already made
+print("%s %i %i %i %i" % (rc.id, len(rc), len(rc.features), len(rc.dbxrefs), len(rc.annotations)))
+```
+
+    Testing 9609 41 0 0
+
+
+
+```python
+
+```
+SEQUENCE I/O
+```python
+from Bio.SeqRecord import SeqRecord
+
+```
+
+
+```python
+# pull up help file
+help(SeqRecord)
+```
+
+    Help on class SeqRecord in module Bio.SeqRecord:
+    
+    class SeqRecord(builtins.object)
+     |  SeqRecord(seq, id='<unknown id>', name='<unknown name>', description='<unknown description>', dbxrefs=None, features=None, annotations=None, letter_annotations=None)
+     |  
+     |  A SeqRecord object holds a sequence and information about it.
+     |  
+     |  Main attributes:
+     |   - id          - Identifier such as a locus tag (string)
+     |   - seq         - The sequence itself (Seq object or similar)
+     |  
+     |  Additional attributes:
+     |   - name        - Sequence name, e.g. gene name (string)
+     |   - description - Additional text (string)
+     |   - dbxrefs     - List of database cross references (list of strings)
+     |   - features    - Any (sub)features defined (list of SeqFeature objects)
+     |   - annotations - Further information about the whole sequence (dictionary).
+     |     Most entries are strings, or lists of strings.
+     |   - letter_annotations - Per letter/symbol annotation (restricted
+     |     dictionary). This holds Python sequences (lists, strings
+     |     or tuples) whose length matches that of the sequence.
+     |     A typical use would be to hold a list of integers
+     |     representing sequencing quality scores, or a string
+     |     representing the secondary structure.
+     |  
+     |  You will typically use Bio.SeqIO to read in sequences from files as
+     |  SeqRecord objects.  However, you may want to create your own SeqRecord
+     |  objects directly (see the __init__ method for further details):
+     |  
+     |  >>> from Bio.Seq import Seq
+     |  >>> from Bio.SeqRecord import SeqRecord
+     |  >>> record = SeqRecord(Seq("MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF"),
+     |  ...                    id="YP_025292.1", name="HokC",
+     |  ...                    description="toxic membrane protein")
+     |  >>> print(record)
+     |  ID: YP_025292.1
+     |  Name: HokC
+     |  Description: toxic membrane protein
+     |  Number of features: 0
+     |  Seq('MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF')
+     |  
+     |  If you want to save SeqRecord objects to a sequence file, use Bio.SeqIO
+     |  for this.  For the special case where you want the SeqRecord turned into
+     |  a string in a particular file format there is a format method which uses
+     |  Bio.SeqIO internally:
+     |  
+     |  >>> print(record.format("fasta"))
+     |  >YP_025292.1 toxic membrane protein
+     |  MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |  <BLANKLINE>
+     |  
+     |  You can also do things like slicing a SeqRecord, checking its length, etc
+     |  
+     |  >>> len(record)
+     |  44
+     |  >>> edited = record[:10] + record[11:]
+     |  >>> print(edited.seq)
+     |  MKQHKAMIVAIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |  >>> print(record.seq)
+     |  MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |  
+     |  Methods defined here:
+     |  
+     |  __add__(self, other)
+     |      Add another sequence or string to this sequence.
+     |      
+     |      The other sequence can be a SeqRecord object, a Seq object (or
+     |      similar, e.g. a MutableSeq) or a plain Python string. If you add
+     |      a plain string or a Seq (like) object, the new SeqRecord will simply
+     |      have this appended to the existing data. However, any per letter
+     |      annotation will be lost:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (record.id, record.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(record.letter_annotations))
+     |      ['solexa_quality']
+     |      
+     |      >>> new = record + "ACT"
+     |      >>> print("%s %s" % (new.id, new.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNNACT
+     |      >>> print(list(new.letter_annotations))
+     |      []
+     |      
+     |      The new record will attempt to combine the annotation, but for any
+     |      ambiguities (e.g. different names) it defaults to omitting that
+     |      annotation.
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> with open("GenBank/pBAD30.gb") as handle:
+     |      ...     plasmid = SeqIO.read(handle, "gb")
+     |      >>> print("%s %i" % (plasmid.id, len(plasmid)))
+     |      pBAD30 4923
+     |      
+     |      Now let's cut the plasmid into two pieces, and join them back up the
+     |      other way round (i.e. shift the starting point on this plasmid, have
+     |      a look at the annotated features in the original file to see why this
+     |      particular split point might make sense):
+     |      
+     |      >>> left = plasmid[:3765]
+     |      >>> right = plasmid[3765:]
+     |      >>> new = right + left
+     |      >>> print("%s %i" % (new.id, len(new)))
+     |      pBAD30 4923
+     |      >>> str(new.seq) == str(right.seq + left.seq)
+     |      True
+     |      >>> len(new.features) == len(left.features) + len(right.features)
+     |      True
+     |      
+     |      When we add the left and right SeqRecord objects, their annotation
+     |      is all consistent, so it is all conserved in the new SeqRecord:
+     |      
+     |      >>> new.id == left.id == right.id == plasmid.id
+     |      True
+     |      >>> new.name == left.name == right.name == plasmid.name
+     |      True
+     |      >>> new.description == plasmid.description
+     |      True
+     |      >>> new.annotations == left.annotations == right.annotations
+     |      True
+     |      >>> new.letter_annotations == plasmid.letter_annotations
+     |      True
+     |      >>> new.dbxrefs == left.dbxrefs == right.dbxrefs
+     |      True
+     |      
+     |      However, we should point out that when we sliced the SeqRecord,
+     |      any annotations dictionary or dbxrefs list entries were lost.
+     |      You can explicitly copy them like this:
+     |      
+     |      >>> new.annotations = plasmid.annotations.copy()
+     |      >>> new.dbxrefs = plasmid.dbxrefs[:]
+     |  
+     |  __bool__(self)
+     |      Boolean value of an instance of this class (True).
+     |      
+     |      This behaviour is for backwards compatibility, since until the
+     |      __len__ method was added, a SeqRecord always evaluated as True.
+     |      
+     |      Note that in comparison, a Seq object will evaluate to False if it
+     |      has a zero length sequence.
+     |      
+     |      WARNING: The SeqRecord may in future evaluate to False when its
+     |      sequence is of zero length (in order to better match the Seq
+     |      object behaviour)!
+     |  
+     |  __bytes__(self)
+     |  
+     |  __contains__(self, char)
+     |      Implement the 'in' keyword, searches the sequence.
+     |      
+     |      e.g.
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Fasta/sweetpea.nu", "fasta")
+     |      >>> "GAATTC" in record
+     |      False
+     |      >>> "AAA" in record
+     |      True
+     |      
+     |      This essentially acts as a proxy for using "in" on the sequence:
+     |      
+     |      >>> "GAATTC" in record.seq
+     |      False
+     |      >>> "AAA" in record.seq
+     |      True
+     |      
+     |      Note that you can also use Seq objects as the query,
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> Seq("AAA") in record
+     |      True
+     |      
+     |      See also the Seq object's __contains__ method.
+     |  
+     |  __eq__(self, other)
+     |      Define the equal-to operand (not implemented).
+     |  
+     |  __format__(self, format_spec)
+     |      Return the record as a string in the specified file format.
+     |      
+     |      This method supports the Python format() function and f-strings.
+     |      The format_spec should be a lower case string supported by
+     |      Bio.SeqIO as a text output file format. Requesting a binary file
+     |      format raises a ValueError. e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> record = SeqRecord(Seq("MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF"),
+     |      ...                    id="YP_025292.1", name="HokC",
+     |      ...                    description="toxic membrane protein")
+     |      ...
+     |      >>> format(record, "fasta")
+     |      '>YP_025292.1 toxic membrane protein\nMKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF\n'
+     |      >>> print(f"Here is {record.id} in FASTA format:\n{record:fasta}")
+     |      Here is YP_025292.1 in FASTA format:
+     |      >YP_025292.1 toxic membrane protein
+     |      MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |      <BLANKLINE>
+     |      
+     |      See also the SeqRecord's format() method.
+     |  
+     |  __ge__(self, other)
+     |      Define the greater-than-or-equal-to operand (not implemented).
+     |  
+     |  __getitem__(self, index)
+     |      Return a sub-sequence or an individual letter.
+     |      
+     |      Slicing, e.g. my_record[5:10], returns a new SeqRecord for
+     |      that sub-sequence with some annotation preserved as follows:
+     |      
+     |      * The name, id and description are kept as-is.
+     |      * Any per-letter-annotations are sliced to match the requested
+     |        sub-sequence.
+     |      * Unless a stride is used, all those features which fall fully
+     |        within the subsequence are included (with their locations
+     |        adjusted accordingly). If you want to preserve any truncated
+     |        features (e.g. GenBank/EMBL source features), you must
+     |        explicitly add them to the new SeqRecord yourself.
+     |      * With the exception of any molecule type, the annotations
+     |        dictionary and the dbxrefs list are not used for the new
+     |        SeqRecord, as in general they may not apply to the
+     |        subsequence. If you want to preserve them, you must explicitly
+     |        copy them to the new SeqRecord yourself.
+     |      
+     |      Using an integer index, e.g. my_record[5] is shorthand for
+     |      extracting that letter from the sequence, my_record.seq[5].
+     |      
+     |      For example, consider this short protein and its secondary
+     |      structure as encoded by the PDB (e.g. H for alpha helices),
+     |      plus a simple feature for its histidine self phosphorylation
+     |      site:
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> from Bio.SeqFeature import SeqFeature, SimpleLocation
+     |      >>> rec = SeqRecord(Seq("MAAGVKQLADDRTLLMAGVSHDLRTPLTRIRLAT"
+     |      ...                     "EMMSEQDGYLAESINKDIEECNAIIEQFIDYLR"),
+     |      ...                 id="1JOY", name="EnvZ",
+     |      ...                 description="Homodimeric domain of EnvZ from E. coli")
+     |      >>> rec.letter_annotations["secondary_structure"] = "  S  SSSSSSHHHHHTTTHHHHHHHHHHHHHHHHHHHHHHTHHHHHHHHHHHHHHHHHHHHHTT  "
+     |      >>> rec.features.append(SeqFeature(SimpleLocation(20, 21),
+     |      ...                     type = "Site"))
+     |      
+     |      Now let's have a quick look at the full record,
+     |      
+     |      >>> print(rec)
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 1
+     |      Per letter annotation for: secondary_structure
+     |      Seq('MAAGVKQLADDRTLLMAGVSHDLRTPLTRIRLATEMMSEQDGYLAESINKDIEE...YLR')
+     |      >>> rec.letter_annotations["secondary_structure"]
+     |      '  S  SSSSSSHHHHHTTTHHHHHHHHHHHHHHHHHHHHHHTHHHHHHHHHHHHHHHHHHHHHTT  '
+     |      >>> print(rec.features[0].location)
+     |      [20:21]
+     |      
+     |      Now let's take a sub sequence, here chosen as the first (fractured)
+     |      alpha helix which includes the histidine phosphorylation site:
+     |      
+     |      >>> sub = rec[11:41]
+     |      >>> print(sub)
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 1
+     |      Per letter annotation for: secondary_structure
+     |      Seq('RTLLMAGVSHDLRTPLTRIRLATEMMSEQD')
+     |      >>> sub.letter_annotations["secondary_structure"]
+     |      'HHHHHTTTHHHHHHHHHHHHHHHHHHHHHH'
+     |      >>> print(sub.features[0].location)
+     |      [9:10]
+     |      
+     |      You can also of course omit the start or end values, for
+     |      example to get the first ten letters only:
+     |      
+     |      >>> print(rec[:10])
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 0
+     |      Per letter annotation for: secondary_structure
+     |      Seq('MAAGVKQLAD')
+     |      
+     |      Or for the last ten letters:
+     |      
+     |      >>> print(rec[-10:])
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 0
+     |      Per letter annotation for: secondary_structure
+     |      Seq('IIEQFIDYLR')
+     |      
+     |      If you omit both, then you get a copy of the original record (although
+     |      lacking the annotations and dbxrefs):
+     |      
+     |      >>> print(rec[:])
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 1
+     |      Per letter annotation for: secondary_structure
+     |      Seq('MAAGVKQLADDRTLLMAGVSHDLRTPLTRIRLATEMMSEQDGYLAESINKDIEE...YLR')
+     |      
+     |      Finally, indexing with a simple integer is shorthand for pulling out
+     |      that letter from the sequence directly:
+     |      
+     |      >>> rec[5]
+     |      'K'
+     |      >>> rec.seq[5]
+     |      'K'
+     |  
+     |  __gt__(self, other)
+     |      Define the greater-than operand (not implemented).
+     |  
+     |  __init__(self, seq, id='<unknown id>', name='<unknown name>', description='<unknown description>', dbxrefs=None, features=None, annotations=None, letter_annotations=None)
+     |      Create a SeqRecord.
+     |      
+     |      Arguments:
+     |       - seq         - Sequence, required (Seq or MutableSeq)
+     |       - id          - Sequence identifier, recommended (string)
+     |       - name        - Sequence name, optional (string)
+     |       - description - Sequence description, optional (string)
+     |       - dbxrefs     - Database cross references, optional (list of strings)
+     |       - features    - Any (sub)features, optional (list of SeqFeature objects)
+     |       - annotations - Dictionary of annotations for the whole sequence
+     |       - letter_annotations - Dictionary of per-letter-annotations, values
+     |         should be strings, list or tuples of the same length as the full
+     |         sequence.
+     |      
+     |      You will typically use Bio.SeqIO to read in sequences from files as
+     |      SeqRecord objects.  However, you may want to create your own SeqRecord
+     |      objects directly.
+     |      
+     |      Note that while an id is optional, we strongly recommend you supply a
+     |      unique id string for each record.  This is especially important
+     |      if you wish to write your sequences to a file.
+     |      
+     |      You can create a 'blank' SeqRecord object, and then populate the
+     |      attributes later.
+     |  
+     |  __iter__(self)
+     |      Iterate over the letters in the sequence.
+     |      
+     |      For example, using Bio.SeqIO to read in a protein FASTA file:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Fasta/loveliesbleeding.pro", "fasta")
+     |      >>> for amino in record:
+     |      ...     print(amino)
+     |      ...     if amino == "L": break
+     |      X
+     |      A
+     |      G
+     |      L
+     |      >>> print(record.seq[3])
+     |      L
+     |      
+     |      This is just a shortcut for iterating over the sequence directly:
+     |      
+     |      >>> for amino in record.seq:
+     |      ...     print(amino)
+     |      ...     if amino == "L": break
+     |      X
+     |      A
+     |      G
+     |      L
+     |      >>> print(record.seq[3])
+     |      L
+     |      
+     |      Note that this does not facilitate iteration together with any
+     |      per-letter-annotation.  However, you can achieve that using the
+     |      python zip function on the record (or its sequence) and the relevant
+     |      per-letter-annotation:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> rec = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (rec.id, rec.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(rec.letter_annotations))
+     |      ['solexa_quality']
+     |      >>> for nuc, qual in zip(rec, rec.letter_annotations["solexa_quality"]):
+     |      ...     if qual > 35:
+     |      ...         print("%s %i" % (nuc, qual))
+     |      A 40
+     |      C 39
+     |      G 38
+     |      T 37
+     |      A 36
+     |      
+     |      You may agree that using zip(rec.seq, ...) is more explicit than using
+     |      zip(rec, ...) as shown above.
+     |  
+     |  __le__(self, other)
+     |      Define the less-than-or-equal-to operand (not implemented).
+     |  
+     |  __len__(self)
+     |      Return the length of the sequence.
+     |      
+     |      For example, using Bio.SeqIO to read in a FASTA nucleotide file:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Fasta/sweetpea.nu", "fasta")
+     |      >>> len(record)
+     |      309
+     |      >>> len(record.seq)
+     |      309
+     |  
+     |  __lt__(self, other)
+     |      Define the less-than operand (not implemented).
+     |  
+     |  __ne__(self, other)
+     |      Define the not-equal-to operand (not implemented).
+     |  
+     |  __radd__(self, other)
+     |      Add another sequence or string to this sequence (from the left).
+     |      
+     |      This method handles adding a Seq object (or similar, e.g. MutableSeq)
+     |      or a plain Python string (on the left) to a SeqRecord (on the right).
+     |      See the __add__ method for more details, but for example:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (record.id, record.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(record.letter_annotations))
+     |      ['solexa_quality']
+     |      
+     |      >>> new = "ACT" + record
+     |      >>> print("%s %s" % (new.id, new.seq))
+     |      slxa_0001_1_0001_01 ACTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(new.letter_annotations))
+     |      []
+     |  
+     |  __repr__(self)
+     |      Return a concise summary of the record for debugging (string).
+     |      
+     |      The python built in function repr works by calling the object's __repr__
+     |      method.  e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> rec = SeqRecord(Seq("MASRGVNKVILVGNLGQDPEVRYMPNGGAVANITLATSESWRDKAT"
+     |      ...                     "GEMKEQTEWHRVVLFGKLAEVASEYLRKGSQVYIEGQLRTRKWTDQ"
+     |      ...                     "SGQDRYTTEVVVNVGGTMQMLGGRQGGGAPAGGNIGGGQPQGGWGQ"
+     |      ...                     "PQQPQGGNQFSGGAQSRPQQSAPAAPSNEPPMDFDDDIPF"),
+     |      ...                 id="NP_418483.1", name="b4059",
+     |      ...                 description="ssDNA-binding protein",
+     |      ...                 dbxrefs=["ASAP:13298", "GI:16131885", "GeneID:948570"])
+     |      >>> print(repr(rec))
+     |      SeqRecord(seq=Seq('MASRGVNKVILVGNLGQDPEVRYMPNGGAVANITLATSESWRDKATGEMKEQTE...IPF'), id='NP_418483.1', name='b4059', description='ssDNA-binding protein', dbxrefs=['ASAP:13298', 'GI:16131885', 'GeneID:948570'])
+     |      
+     |      At the python prompt you can also use this shorthand:
+     |      
+     |      >>> rec
+     |      SeqRecord(seq=Seq('MASRGVNKVILVGNLGQDPEVRYMPNGGAVANITLATSESWRDKATGEMKEQTE...IPF'), id='NP_418483.1', name='b4059', description='ssDNA-binding protein', dbxrefs=['ASAP:13298', 'GI:16131885', 'GeneID:948570'])
+     |      
+     |      Note that long sequences are shown truncated. Also note that any
+     |      annotations, letter_annotations and features are not shown (as they
+     |      would lead to a very long string).
+     |  
+     |  __str__(self)
+     |      Return a human readable summary of the record and its annotation (string).
+     |      
+     |      The python built in function str works by calling the object's __str__
+     |      method.  e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> record = SeqRecord(Seq("MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF"),
+     |      ...                    id="YP_025292.1", name="HokC",
+     |      ...                    description="toxic membrane protein, small")
+     |      >>> print(str(record))
+     |      ID: YP_025292.1
+     |      Name: HokC
+     |      Description: toxic membrane protein, small
+     |      Number of features: 0
+     |      Seq('MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF')
+     |      
+     |      In this example you don't actually need to call str explicitly, as the
+     |      print command does this automatically:
+     |      
+     |      >>> print(record)
+     |      ID: YP_025292.1
+     |      Name: HokC
+     |      Description: toxic membrane protein, small
+     |      Number of features: 0
+     |      Seq('MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF')
+     |      
+     |      Note that long sequences are shown truncated.
+     |  
+     |  count(self, sub, start=None, end=None)
+     |      Return the number of non-overlapping occurrences of sub in seq[start:end].
+     |      
+     |      Optional arguments start and end are interpreted as in slice notation.
+     |      This method behaves as the count method of Python strings.
+     |  
+     |  format(self, format)
+     |      Return the record as a string in the specified file format.
+     |      
+     |      The format should be a lower case string supported as an output
+     |      format by Bio.SeqIO, which is used to turn the SeqRecord into a
+     |      string.  e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> record = SeqRecord(Seq("MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF"),
+     |      ...                    id="YP_025292.1", name="HokC",
+     |      ...                    description="toxic membrane protein")
+     |      >>> record.format("fasta")
+     |      '>YP_025292.1 toxic membrane protein\nMKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF\n'
+     |      >>> print(record.format("fasta"))
+     |      >YP_025292.1 toxic membrane protein
+     |      MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |      <BLANKLINE>
+     |      
+     |      The Python print function automatically appends a new line, meaning
+     |      in this example a blank line is shown.  If you look at the string
+     |      representation you can see there is a trailing new line (shown as
+     |      slash n) which is important when writing to a file or if
+     |      concatenating multiple sequence strings together.
+     |      
+     |      Note that this method will NOT work on every possible file format
+     |      supported by Bio.SeqIO (e.g. some are for multiple sequences only,
+     |      and binary formats are not supported).
+     |  
+     |  islower(self)
+     |      Return True if all ASCII characters in the record's sequence are lowercase.
+     |      
+     |      If there are no cased characters, the method returns False.
+     |  
+     |  isupper(self)
+     |      Return True if all ASCII characters in the record's sequence are uppercase.
+     |      
+     |      If there are no cased characters, the method returns False.
+     |  
+     |  lower(self)
+     |      Return a copy of the record with a lower case sequence.
+     |      
+     |      All the annotation is preserved unchanged. e.g.
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Fasta/aster.pro", "fasta")
+     |      >>> print(record.format("fasta"))
+     |      >gi|3298468|dbj|BAA31520.1| SAMIPF
+     |      GGHVNPAVTFGAFVGGNITLLRGIVYIIAQLLGSTVACLLLKFVTNDMAVGVFSLSAGVG
+     |      VTNALVFEIVMTFGLVYTVYATAIDPKKGSLGTIAPIAIGFIVGANI
+     |      <BLANKLINE>
+     |      >>> print(record.lower().format("fasta"))
+     |      >gi|3298468|dbj|BAA31520.1| SAMIPF
+     |      gghvnpavtfgafvggnitllrgivyiiaqllgstvaclllkfvtndmavgvfslsagvg
+     |      vtnalvfeivmtfglvytvyataidpkkgslgtiapiaigfivgani
+     |      <BLANKLINE>
+     |      
+     |      To take a more annotation rich example,
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> old = SeqIO.read("EMBL/TRBG361.embl", "embl")
+     |      >>> len(old.features)
+     |      3
+     |      >>> new = old.lower()
+     |      >>> len(old.features) == len(new.features)
+     |      True
+     |      >>> old.annotations["organism"] == new.annotations["organism"]
+     |      True
+     |      >>> old.dbxrefs == new.dbxrefs
+     |      True
+     |  
+     |  reverse_complement(self, id=False, name=False, description=False, features=True, annotations=False, letter_annotations=True, dbxrefs=False)
+     |      Return new SeqRecord with reverse complement sequence.
+     |      
+     |      By default the new record does NOT preserve the sequence identifier,
+     |      name, description, general annotation or database cross-references -
+     |      these are unlikely to apply to the reversed sequence.
+     |      
+     |      You can specify the returned record's id, name and description as
+     |      strings, or True to keep that of the parent, or False for a default.
+     |      
+     |      You can specify the returned record's features with a list of
+     |      SeqFeature objects, or True to keep that of the parent, or False to
+     |      omit them. The default is to keep the original features (with the
+     |      strand and locations adjusted).
+     |      
+     |      You can also specify both the returned record's annotations and
+     |      letter_annotations as dictionaries, True to keep that of the parent,
+     |      or False to omit them. The default is to keep the original
+     |      annotations (with the letter annotations reversed).
+     |      
+     |      To show what happens to the pre-letter annotations, consider an
+     |      example Solexa variant FASTQ file with a single entry, which we'll
+     |      read in as a SeqRecord:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (record.id, record.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(record.letter_annotations))
+     |      ['solexa_quality']
+     |      >>> print(record.letter_annotations["solexa_quality"])
+     |      [40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5]
+     |      
+     |      Now take the reverse complement, here we explicitly give a new
+     |      identifier (the old identifier with a suffix):
+     |      
+     |      >>> rc_record = record.reverse_complement(id=record.id + "_rc")
+     |      >>> print("%s %s" % (rc_record.id, rc_record.seq))
+     |      slxa_0001_1_0001_01_rc NNNNNNACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT
+     |      
+     |      Notice that the per-letter-annotations have also been reversed,
+     |      although this may not be appropriate for all cases.
+     |      
+     |      >>> print(rc_record.letter_annotations["solexa_quality"])
+     |      [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+     |      
+     |      Now for the features, we need a different example. Parsing a GenBank
+     |      file is probably the easiest way to get an nice example with features
+     |      in it...
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> with open("GenBank/pBAD30.gb") as handle:
+     |      ...     plasmid = SeqIO.read(handle, "gb")
+     |      >>> print("%s %i" % (plasmid.id, len(plasmid)))
+     |      pBAD30 4923
+     |      >>> plasmid.seq
+     |      Seq('GCTAGCGGAGTGTATACTGGCTTACTATGTTGGCACTGATGAGGGTGTCAGTGA...ATG')
+     |      >>> len(plasmid.features)
+     |      13
+     |      
+     |      Now, let's take the reverse complement of this whole plasmid:
+     |      
+     |      >>> rc_plasmid = plasmid.reverse_complement(id=plasmid.id+"_rc")
+     |      >>> print("%s %i" % (rc_plasmid.id, len(rc_plasmid)))
+     |      pBAD30_rc 4923
+     |      >>> rc_plasmid.seq
+     |      Seq('CATGGGCAAATATTATACGCAAGGCGACAAGGTGCTGATGCCGCTGGCGATTCA...AGC')
+     |      >>> len(rc_plasmid.features)
+     |      13
+     |      
+     |      Let's compare the first CDS feature - it has gone from being the
+     |      second feature (index 1) to the second last feature (index -2), its
+     |      strand has changed, and the location switched round.
+     |      
+     |      >>> print(plasmid.features[1])
+     |      type: CDS
+     |      location: [1081:1960](-)
+     |      qualifiers:
+     |          Key: label, Value: ['araC']
+     |          Key: note, Value: ['araC regulator of the arabinose BAD promoter']
+     |          Key: vntifkey, Value: ['4']
+     |      <BLANKLINE>
+     |      >>> print(rc_plasmid.features[-2])
+     |      type: CDS
+     |      location: [2963:3842](+)
+     |      qualifiers:
+     |          Key: label, Value: ['araC']
+     |          Key: note, Value: ['araC regulator of the arabinose BAD promoter']
+     |          Key: vntifkey, Value: ['4']
+     |      <BLANKLINE>
+     |      
+     |      You can check this new location, based on the length of the plasmid:
+     |      
+     |      >>> len(plasmid) - 1081
+     |      3842
+     |      >>> len(plasmid) - 1960
+     |      2963
+     |      
+     |      Note that if the SeqFeature annotation includes any strand specific
+     |      information (e.g. base changes for a SNP), this information is not
+     |      amended, and would need correction after the reverse complement.
+     |      
+     |      Note trying to reverse complement a protein SeqRecord raises an
+     |      exception:
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> protein_rec = SeqRecord(Seq("MAIVMGR"), id="Test",
+     |      ...                         annotations={"molecule_type": "protein"})
+     |      >>> protein_rec.reverse_complement()
+     |      Traceback (most recent call last):
+     |         ...
+     |      ValueError: Proteins do not have complements!
+     |      
+     |      If you have RNA without any U bases, it must be annotated as RNA
+     |      otherwise it will be treated as DNA by default with A mapped to T:
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> rna1 = SeqRecord(Seq("ACG"), id="Test")
+     |      >>> rna2 = SeqRecord(Seq("ACG"), id="Test", annotations={"molecule_type": "RNA"})
+     |      >>> print(rna1.reverse_complement(id="RC", description="unk").format("fasta"))
+     |      >RC unk
+     |      CGT
+     |      <BLANKLINE>
+     |      >>> print(rna2.reverse_complement(id="RC", description="RNA").format("fasta"))
+     |      >RC RNA
+     |      CGU
+     |      <BLANKLINE>
+     |      
+     |      Also note you can reverse complement a SeqRecord using a MutableSeq:
+     |      
+     |      >>> from Bio.Seq import MutableSeq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> rec = SeqRecord(MutableSeq("ACGT"), id="Test")
+     |      >>> rec.seq[0] = "T"
+     |      >>> print("%s %s" % (rec.id, rec.seq))
+     |      Test TCGT
+     |      >>> rc = rec.reverse_complement(id=True)
+     |      >>> print("%s %s" % (rc.id, rc.seq))
+     |      Test ACGA
+     |  
+     |  translate(self, table='Standard', stop_symbol='*', to_stop=False, cds=False, gap=None, id=False, name=False, description=False, features=False, annotations=False, letter_annotations=False, dbxrefs=False)
+     |      Return new SeqRecord with translated sequence.
+     |      
+     |      This calls the record's .seq.translate() method (which describes
+     |      the translation related arguments, like table for the genetic code),
+     |      
+     |      By default the new record does NOT preserve the sequence identifier,
+     |      name, description, general annotation or database cross-references -
+     |      these are unlikely to apply to the translated sequence.
+     |      
+     |      You can specify the returned record's id, name and description as
+     |      strings, or True to keep that of the parent, or False for a default.
+     |      
+     |      You can specify the returned record's features with a list of
+     |      SeqFeature objects, or False (default) to omit them.
+     |      
+     |      You can also specify both the returned record's annotations and
+     |      letter_annotations as dictionaries, True to keep that of the parent
+     |      (annotations only), or False (default) to omit them.
+     |      
+     |      e.g. Loading a FASTA gene and translating it,
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> gene_record = SeqIO.read("Fasta/sweetpea.nu", "fasta")
+     |      >>> print(gene_record.format("fasta"))
+     |      >gi|3176602|gb|U78617.1|LOU78617 Lathyrus odoratus phytochrome A (PHYA) gene, partial cds
+     |      CAGGCTGCGCGGTTTCTATTTATGAAGAACAAGGTCCGTATGATAGTTGATTGTCATGCA
+     |      AAACATGTGAAGGTTCTTCAAGACGAAAAACTCCCATTTGATTTGACTCTGTGCGGTTCG
+     |      ACCTTAAGAGCTCCACATAGTTGCCATTTGCAGTACATGGCTAACATGGATTCAATTGCT
+     |      TCATTGGTTATGGCAGTGGTCGTCAATGACAGCGATGAAGATGGAGATAGCCGTGACGCA
+     |      GTTCTACCACAAAAGAAAAAGAGACTTTGGGGTTTGGTAGTTTGTCATAACACTACTCCG
+     |      AGGTTTGTT
+     |      <BLANKLINE>
+     |      
+     |      And now translating the record, specifying the new ID and description:
+     |      
+     |      >>> protein_record = gene_record.translate(table=11,
+     |      ...                                        id="phya",
+     |      ...                                        description="translation")
+     |      >>> print(protein_record.format("fasta"))
+     |      >phya translation
+     |      QAARFLFMKNKVRMIVDCHAKHVKVLQDEKLPFDLTLCGSTLRAPHSCHLQYMANMDSIA
+     |      SLVMAVVVNDSDEDGDSRDAVLPQKKKRLWGLVVCHNTTPRFV
+     |      <BLANKLINE>
+     |  
+     |  upper(self)
+     |      Return a copy of the record with an upper case sequence.
+     |      
+     |      All the annotation is preserved unchanged. e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> record = SeqRecord(Seq("acgtACGT"), id="Test",
+     |      ...                    description = "Made up for this example")
+     |      >>> record.letter_annotations["phred_quality"] = [1, 2, 3, 4, 5, 6, 7, 8]
+     |      >>> print(record.upper().format("fastq"))
+     |      @Test Made up for this example
+     |      ACGTACGT
+     |      +
+     |      "#$%&'()
+     |      <BLANKLINE>
+     |      
+     |      Naturally, there is a matching lower method:
+     |      
+     |      >>> print(record.lower().format("fastq"))
+     |      @Test Made up for this example
+     |      acgtacgt
+     |      +
+     |      "#$%&'()
+     |      <BLANKLINE>
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |  
+     |  letter_annotations
+     |      Dictionary of per-letter-annotation for the sequence.
+     |      
+     |      For example, this can hold quality scores used in FASTQ or QUAL files.
+     |      Consider this example using Bio.SeqIO to read in an example Solexa
+     |      variant FASTQ file as a SeqRecord:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (record.id, record.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(record.letter_annotations))
+     |      ['solexa_quality']
+     |      >>> print(record.letter_annotations["solexa_quality"])
+     |      [40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5]
+     |      
+     |      The letter_annotations get sliced automatically if you slice the
+     |      parent SeqRecord, for example taking the last ten bases:
+     |      
+     |      >>> sub_record = record[-10:]
+     |      >>> print("%s %s" % (sub_record.id, sub_record.seq))
+     |      slxa_0001_1_0001_01 ACGTNNNNNN
+     |      >>> print(sub_record.letter_annotations["solexa_quality"])
+     |      [4, 3, 2, 1, 0, -1, -2, -3, -4, -5]
+     |      
+     |      Any python sequence (i.e. list, tuple or string) can be recorded in
+     |      the SeqRecord's letter_annotations dictionary as long as the length
+     |      matches that of the SeqRecord's sequence.  e.g.
+     |      
+     |      >>> len(sub_record.letter_annotations)
+     |      1
+     |      >>> sub_record.letter_annotations["dummy"] = "abcdefghij"
+     |      >>> len(sub_record.letter_annotations)
+     |      2
+     |      
+     |      You can delete entries from the letter_annotations dictionary as usual:
+     |      
+     |      >>> del sub_record.letter_annotations["solexa_quality"]
+     |      >>> sub_record.letter_annotations
+     |      {'dummy': 'abcdefghij'}
+     |      
+     |      You can completely clear the dictionary easily as follows:
+     |      
+     |      >>> sub_record.letter_annotations = {}
+     |      >>> sub_record.letter_annotations
+     |      {}
+     |      
+     |      Note that if replacing the record's sequence with a sequence of a
+     |      different length you must first clear the letter_annotations dict.
+     |  
+     |  seq
+     |      The sequence itself, as a Seq or MutableSeq object.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  __hash__ = None
+    
+
+
+
+```python
+# create seq record
+from Bio.Seq import Seq
+```
+
+
+```python
+simple_seq = Seq("GATC")
+```
+
+
+```python
+simple_seq_r = SeqRecord(simple_seq)
+```
+
+
+```python
+simple_seq_r
+```
+
+
+
+
+    SeqRecord(seq=Seq('GATC'), id='<unknown id>', name='<unknown name>', description='<unknown description>', dbxrefs=[])
+
+
+
+
+```python
+# can pass the id to it
+simple_seq_r.id = "AC12345"
+```
+
+
+```python
+simple_seq_r.description = "Made up sequence for the VBD computational biology class"
+```
+
+
+```python
+print(simple_seq_r.description)
+```
+
+    Made up sequence for the VBD computational biology class
+
+
+
+```python
+simple_seq_r.seq
+```
+
+
+
+
+    Seq('GATC')
+
+
+
+
+```python
+# now we have lots of info on it, way to story seq with annotation
+simple_seq_r
+```
+
+
+
+
+    SeqRecord(seq=Seq('GATC'), id='AC12345', name='<unknown name>', description='Made up sequence for the VBD computational biology class', dbxrefs=[])
+
+
+
+
+```python
+simple_seq_r.annotations["evidence"] = "None. this is just example"
+```
+
+
+```python
+print(simple_seq_r.annotations["evidence"])
+```
+
+    None. this is just example
+
+
+
+```python
+#all stored in simple seq are but hidden
+simple_seq_r
+```
+
+
+
+
+    SeqRecord(seq=Seq('GATC'), id='AC12345', name='<unknown name>', description='Made up sequence for the VBD computational biology class', dbxrefs=[])
+
+
+
+
+```python
+#per letter annotations
+simple_seq_r.letter_annotations["phred_quality"] = [40, 40, 38, 30]
+```
+
+
+```python
+print(simple_seq_r.letter_annotations)
+```
+
+    {'phred_quality': [40, 40, 38, 30]}
+
+
+
+```python
+# https://raw.githubusercontent.com/biopython/biopython/master/Tests/GenBank/NC_005816.fna
+```
+
+
+```python
+from Bio import SeqIO
+```
+
+
+```python
+record = SeqIO.read("NC_005816.fna.txt", "fasta")
+```
+# now we have all these annotations
+record
+
+```python
+record.seq
+```
+
+
+
+
+    Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG')
+
+
+
+
+```python
+record.id
+```
+
+
+
+
+    'gi|45478711|ref|NC_005816.1|'
+
+
+
+
+```python
+record.description
+```
+
+
+
+
+    'gi|45478711|ref|NC_005816.1| Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence'
+
+
+
+
+```python
+# you can only get info that is provided in fasta file
+record.dbxrefs
+```
+
+
+
+
+    []
+
+
+
+
+```python
+record.annotations
+```
+
+
+
+
+    {}
+
+
+
+
+```python
+record.features
+```
+
+
+
+
+    []
+
+
+
+
+```python
+#https://raw.githubusercontent.com/biopython/biopython/master/Tests/GenBank/NC_005816.gb
+```
+
+
+```python
+record = SeqIO.read("NC_005816.gb.txt", "genbank")
+```
+
+
+```python
+record
+```
+
+
+
+
+    SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=['Project:58037'])
+
+
+
+
+```python
+record.seq
+```
+
+
+
+
+    Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG')
+
+
+
+
+```python
+record.id
+```
+
+
+
+
+    'NC_005816.1'
+
+
+
+
+```python
+record.name
+```
+
+
+
+
+    'NC_005816'
+
+
+
+
+```python
+record.description
+```
+
+
+
+
+    'Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence'
+
+
+
+
+```python
+# genbank doesnt give rec annotations for their files
+record.letter_annotations
+```
+
+
+
+
+    {}
+
+
+
+
+```python
+len(record.annotations)
+```
+
+
+
+
+    13
+
+
+
+
+```python
+# where dna is from
+record.annotations["source"]
+```
+
+
+
+
+    'Yersinia pestis biovar Microtus str. 91001'
+
+
+
+
+```python
+record.dbxrefs
+```
+
+
+
+
+    ['Project:58037']
+
+
+
+
+```python
+# how many featurs in table
+len(record.features)
+```
+
+
+
+
+    41
+
+
+
+
+```python
+from Bio import SeqFeature
+```
+
+
+```python
+start_pos = SeqFeature.AfterPosition(5)
+```
+
+
+```python
+end_pos = SeqFeature.BetweenPosition(9, left = 8, right = 9)
+```
+
+
+```python
+# can annotate and give Ambiguous answers (not written in stone info) ^^^
+
+```
+
+
+```python
+# set location
+my_location = SeqFeature.SimpleLocation(start_pos, end_pos)
+```
+
+
+```python
+print(my_location)
+```
+
+    [>5:(8^9)]
+
+
+
+```python
+my_location.start
+```
+
+
+
+
+    AfterPosition(5)
+
+
+
+
+```python
+my_location.end
+```
+
+
+
+
+    BetweenPosition(9, left=8, right=9)
+
+
+
+
+```python
+# want to shorten it 
+int(my_location.end)
+```
+
+
+
+
+    9
+
+
+
+
+```python
+int(my_location.start)
+```
+
+
+
+
+    5
+
+
+
+
+```python
+exact_location = SeqFeature.SimpleLocation(5,9)
+```
+
+
+```python
+print(exact_location)
+```
+
+    [5:9]
+
+
+
+```python
+exact_location.start
+```
+
+
+
+
+    ExactPosition(5)
+
+
+
+
+```python
+# moding and changning anotations
+```
+
+
+```python
+record = SeqIO.read("NC_005816.gb.txt", "genbank")
+```
+
+
+```python
+record
+```
+
+
+
+
+    SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=['Project:58037'])
+
+
+
+
+```python
+len(record)
+```
+
+
+
+
+    9609
+
+
+
+
+```python
+len(record.features)
+```
+
+
+
+
+    41
+
+
+
+
+```python
+record.dbxrefs
+```
+
+
+
+
+    ['Project:58037']
+
+
+
+
+```python
+# all things we can pull up
+record.annotations.keys()
+```
+
+
+
+
+    dict_keys(['molecule_type', 'topology', 'data_file_division', 'date', 'accessions', 'sequence_version', 'gi', 'keywords', 'source', 'organism', 'taxonomy', 'references', 'comment'])
+
+
+
+
+```python
+# since circular genome, who is to say where start and stop is. we can shift it
+shifted = record[2000:] + record[:2000]
+```
+
+
+```python
+shifted
+```
+
+
+
+
+    SeqRecord(seq=Seq('GATACGCAGTCATATTTTTTACACAATTCTCTAATCCCGACAAGGTCGTAGGTC...GGA'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=[])
+
+
+
+
+```python
+#havent changed info but chnaged start
+len(shifted)
+```
+
+
+
+
+    9609
+
+
+
+
+```python
+# lost a feature
+len(shifted.features)
+```
+
+
+
+
+    40
+
+
+
+
+```python
+shifted.annotations.keys()
+```
+
+
+
+
+    dict_keys(['molecule_type'])
+
+
+
+
+```python
+#nothing anymore
+shifted.dbxrefs
+```
+
+
+
+
+    []
+
+
+
+
+```python
+shifted.dbxrefs = record.dbxrefs[:]
+```
+
+
+```python
+shifted.dbxrefs
+```
+
+
+
+
+    ['Project:58037']
+
+
+
+
+```python
+shifted.annotations = record.annotations.copy()
+```
+
+
+```python
+shifted.annotations.keys()
+```
+
+
+
+
+    dict_keys(['molecule_type', 'topology', 'data_file_division', 'date', 'accessions', 'sequence_version', 'gi', 'keywords', 'source', 'organism', 'taxonomy', 'references', 'comment'])
+
+
+
+
+```python
+record
+```
+
+
+
+
+    SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=['Project:58037'])
+
+
+
+
+```python
+# print first value as string, then present next for as integers 
+print("%s %i %i %i %i" % (record.id, len(record), len(record.features), len(record.dbxrefs), len(record.annotations)))
+```
+
+    NC_005816.1 9609 41 1 13
+
+
+
+```python
+rc = record.reverse_complement(id = "Testing")
+```
+
+
+```python
+rc
+```
+
+
+
+
+    SeqRecord(seq=Seq('CAGGGGTCGGGGTACGCATTCCCTCATGCGTCAATATTATCTGGCATTGCGATG...ACA'), id='Testing', name='<unknown name>', description='<unknown description>', dbxrefs=[])
+
+
+
+
+```python
+#make sure not to do duplicates of already made
+print("%s %i %i %i %i" % (rc.id, len(rc), len(rc.features), len(rc.dbxrefs), len(rc.annotations)))
+```
+
+    Testing 9609 41 0 0
+
+
+
+```python
+
+```
+MULTIPLE SEQ ALIGNMENT
+```python
+from Bio.SeqRecord import SeqRecord
+
+```
+
+
+```python
+# pull up help file
+help(SeqRecord)
+```
+
+    Help on class SeqRecord in module Bio.SeqRecord:
+    
+    class SeqRecord(builtins.object)
+     |  SeqRecord(seq, id='<unknown id>', name='<unknown name>', description='<unknown description>', dbxrefs=None, features=None, annotations=None, letter_annotations=None)
+     |  
+     |  A SeqRecord object holds a sequence and information about it.
+     |  
+     |  Main attributes:
+     |   - id          - Identifier such as a locus tag (string)
+     |   - seq         - The sequence itself (Seq object or similar)
+     |  
+     |  Additional attributes:
+     |   - name        - Sequence name, e.g. gene name (string)
+     |   - description - Additional text (string)
+     |   - dbxrefs     - List of database cross references (list of strings)
+     |   - features    - Any (sub)features defined (list of SeqFeature objects)
+     |   - annotations - Further information about the whole sequence (dictionary).
+     |     Most entries are strings, or lists of strings.
+     |   - letter_annotations - Per letter/symbol annotation (restricted
+     |     dictionary). This holds Python sequences (lists, strings
+     |     or tuples) whose length matches that of the sequence.
+     |     A typical use would be to hold a list of integers
+     |     representing sequencing quality scores, or a string
+     |     representing the secondary structure.
+     |  
+     |  You will typically use Bio.SeqIO to read in sequences from files as
+     |  SeqRecord objects.  However, you may want to create your own SeqRecord
+     |  objects directly (see the __init__ method for further details):
+     |  
+     |  >>> from Bio.Seq import Seq
+     |  >>> from Bio.SeqRecord import SeqRecord
+     |  >>> record = SeqRecord(Seq("MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF"),
+     |  ...                    id="YP_025292.1", name="HokC",
+     |  ...                    description="toxic membrane protein")
+     |  >>> print(record)
+     |  ID: YP_025292.1
+     |  Name: HokC
+     |  Description: toxic membrane protein
+     |  Number of features: 0
+     |  Seq('MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF')
+     |  
+     |  If you want to save SeqRecord objects to a sequence file, use Bio.SeqIO
+     |  for this.  For the special case where you want the SeqRecord turned into
+     |  a string in a particular file format there is a format method which uses
+     |  Bio.SeqIO internally:
+     |  
+     |  >>> print(record.format("fasta"))
+     |  >YP_025292.1 toxic membrane protein
+     |  MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |  <BLANKLINE>
+     |  
+     |  You can also do things like slicing a SeqRecord, checking its length, etc
+     |  
+     |  >>> len(record)
+     |  44
+     |  >>> edited = record[:10] + record[11:]
+     |  >>> print(edited.seq)
+     |  MKQHKAMIVAIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |  >>> print(record.seq)
+     |  MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |  
+     |  Methods defined here:
+     |  
+     |  __add__(self, other)
+     |      Add another sequence or string to this sequence.
+     |      
+     |      The other sequence can be a SeqRecord object, a Seq object (or
+     |      similar, e.g. a MutableSeq) or a plain Python string. If you add
+     |      a plain string or a Seq (like) object, the new SeqRecord will simply
+     |      have this appended to the existing data. However, any per letter
+     |      annotation will be lost:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (record.id, record.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(record.letter_annotations))
+     |      ['solexa_quality']
+     |      
+     |      >>> new = record + "ACT"
+     |      >>> print("%s %s" % (new.id, new.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNNACT
+     |      >>> print(list(new.letter_annotations))
+     |      []
+     |      
+     |      The new record will attempt to combine the annotation, but for any
+     |      ambiguities (e.g. different names) it defaults to omitting that
+     |      annotation.
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> with open("GenBank/pBAD30.gb") as handle:
+     |      ...     plasmid = SeqIO.read(handle, "gb")
+     |      >>> print("%s %i" % (plasmid.id, len(plasmid)))
+     |      pBAD30 4923
+     |      
+     |      Now let's cut the plasmid into two pieces, and join them back up the
+     |      other way round (i.e. shift the starting point on this plasmid, have
+     |      a look at the annotated features in the original file to see why this
+     |      particular split point might make sense):
+     |      
+     |      >>> left = plasmid[:3765]
+     |      >>> right = plasmid[3765:]
+     |      >>> new = right + left
+     |      >>> print("%s %i" % (new.id, len(new)))
+     |      pBAD30 4923
+     |      >>> str(new.seq) == str(right.seq + left.seq)
+     |      True
+     |      >>> len(new.features) == len(left.features) + len(right.features)
+     |      True
+     |      
+     |      When we add the left and right SeqRecord objects, their annotation
+     |      is all consistent, so it is all conserved in the new SeqRecord:
+     |      
+     |      >>> new.id == left.id == right.id == plasmid.id
+     |      True
+     |      >>> new.name == left.name == right.name == plasmid.name
+     |      True
+     |      >>> new.description == plasmid.description
+     |      True
+     |      >>> new.annotations == left.annotations == right.annotations
+     |      True
+     |      >>> new.letter_annotations == plasmid.letter_annotations
+     |      True
+     |      >>> new.dbxrefs == left.dbxrefs == right.dbxrefs
+     |      True
+     |      
+     |      However, we should point out that when we sliced the SeqRecord,
+     |      any annotations dictionary or dbxrefs list entries were lost.
+     |      You can explicitly copy them like this:
+     |      
+     |      >>> new.annotations = plasmid.annotations.copy()
+     |      >>> new.dbxrefs = plasmid.dbxrefs[:]
+     |  
+     |  __bool__(self)
+     |      Boolean value of an instance of this class (True).
+     |      
+     |      This behaviour is for backwards compatibility, since until the
+     |      __len__ method was added, a SeqRecord always evaluated as True.
+     |      
+     |      Note that in comparison, a Seq object will evaluate to False if it
+     |      has a zero length sequence.
+     |      
+     |      WARNING: The SeqRecord may in future evaluate to False when its
+     |      sequence is of zero length (in order to better match the Seq
+     |      object behaviour)!
+     |  
+     |  __bytes__(self)
+     |  
+     |  __contains__(self, char)
+     |      Implement the 'in' keyword, searches the sequence.
+     |      
+     |      e.g.
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Fasta/sweetpea.nu", "fasta")
+     |      >>> "GAATTC" in record
+     |      False
+     |      >>> "AAA" in record
+     |      True
+     |      
+     |      This essentially acts as a proxy for using "in" on the sequence:
+     |      
+     |      >>> "GAATTC" in record.seq
+     |      False
+     |      >>> "AAA" in record.seq
+     |      True
+     |      
+     |      Note that you can also use Seq objects as the query,
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> Seq("AAA") in record
+     |      True
+     |      
+     |      See also the Seq object's __contains__ method.
+     |  
+     |  __eq__(self, other)
+     |      Define the equal-to operand (not implemented).
+     |  
+     |  __format__(self, format_spec)
+     |      Return the record as a string in the specified file format.
+     |      
+     |      This method supports the Python format() function and f-strings.
+     |      The format_spec should be a lower case string supported by
+     |      Bio.SeqIO as a text output file format. Requesting a binary file
+     |      format raises a ValueError. e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> record = SeqRecord(Seq("MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF"),
+     |      ...                    id="YP_025292.1", name="HokC",
+     |      ...                    description="toxic membrane protein")
+     |      ...
+     |      >>> format(record, "fasta")
+     |      '>YP_025292.1 toxic membrane protein\nMKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF\n'
+     |      >>> print(f"Here is {record.id} in FASTA format:\n{record:fasta}")
+     |      Here is YP_025292.1 in FASTA format:
+     |      >YP_025292.1 toxic membrane protein
+     |      MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |      <BLANKLINE>
+     |      
+     |      See also the SeqRecord's format() method.
+     |  
+     |  __ge__(self, other)
+     |      Define the greater-than-or-equal-to operand (not implemented).
+     |  
+     |  __getitem__(self, index)
+     |      Return a sub-sequence or an individual letter.
+     |      
+     |      Slicing, e.g. my_record[5:10], returns a new SeqRecord for
+     |      that sub-sequence with some annotation preserved as follows:
+     |      
+     |      * The name, id and description are kept as-is.
+     |      * Any per-letter-annotations are sliced to match the requested
+     |        sub-sequence.
+     |      * Unless a stride is used, all those features which fall fully
+     |        within the subsequence are included (with their locations
+     |        adjusted accordingly). If you want to preserve any truncated
+     |        features (e.g. GenBank/EMBL source features), you must
+     |        explicitly add them to the new SeqRecord yourself.
+     |      * With the exception of any molecule type, the annotations
+     |        dictionary and the dbxrefs list are not used for the new
+     |        SeqRecord, as in general they may not apply to the
+     |        subsequence. If you want to preserve them, you must explicitly
+     |        copy them to the new SeqRecord yourself.
+     |      
+     |      Using an integer index, e.g. my_record[5] is shorthand for
+     |      extracting that letter from the sequence, my_record.seq[5].
+     |      
+     |      For example, consider this short protein and its secondary
+     |      structure as encoded by the PDB (e.g. H for alpha helices),
+     |      plus a simple feature for its histidine self phosphorylation
+     |      site:
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> from Bio.SeqFeature import SeqFeature, SimpleLocation
+     |      >>> rec = SeqRecord(Seq("MAAGVKQLADDRTLLMAGVSHDLRTPLTRIRLAT"
+     |      ...                     "EMMSEQDGYLAESINKDIEECNAIIEQFIDYLR"),
+     |      ...                 id="1JOY", name="EnvZ",
+     |      ...                 description="Homodimeric domain of EnvZ from E. coli")
+     |      >>> rec.letter_annotations["secondary_structure"] = "  S  SSSSSSHHHHHTTTHHHHHHHHHHHHHHHHHHHHHHTHHHHHHHHHHHHHHHHHHHHHTT  "
+     |      >>> rec.features.append(SeqFeature(SimpleLocation(20, 21),
+     |      ...                     type = "Site"))
+     |      
+     |      Now let's have a quick look at the full record,
+     |      
+     |      >>> print(rec)
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 1
+     |      Per letter annotation for: secondary_structure
+     |      Seq('MAAGVKQLADDRTLLMAGVSHDLRTPLTRIRLATEMMSEQDGYLAESINKDIEE...YLR')
+     |      >>> rec.letter_annotations["secondary_structure"]
+     |      '  S  SSSSSSHHHHHTTTHHHHHHHHHHHHHHHHHHHHHHTHHHHHHHHHHHHHHHHHHHHHTT  '
+     |      >>> print(rec.features[0].location)
+     |      [20:21]
+     |      
+     |      Now let's take a sub sequence, here chosen as the first (fractured)
+     |      alpha helix which includes the histidine phosphorylation site:
+     |      
+     |      >>> sub = rec[11:41]
+     |      >>> print(sub)
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 1
+     |      Per letter annotation for: secondary_structure
+     |      Seq('RTLLMAGVSHDLRTPLTRIRLATEMMSEQD')
+     |      >>> sub.letter_annotations["secondary_structure"]
+     |      'HHHHHTTTHHHHHHHHHHHHHHHHHHHHHH'
+     |      >>> print(sub.features[0].location)
+     |      [9:10]
+     |      
+     |      You can also of course omit the start or end values, for
+     |      example to get the first ten letters only:
+     |      
+     |      >>> print(rec[:10])
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 0
+     |      Per letter annotation for: secondary_structure
+     |      Seq('MAAGVKQLAD')
+     |      
+     |      Or for the last ten letters:
+     |      
+     |      >>> print(rec[-10:])
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 0
+     |      Per letter annotation for: secondary_structure
+     |      Seq('IIEQFIDYLR')
+     |      
+     |      If you omit both, then you get a copy of the original record (although
+     |      lacking the annotations and dbxrefs):
+     |      
+     |      >>> print(rec[:])
+     |      ID: 1JOY
+     |      Name: EnvZ
+     |      Description: Homodimeric domain of EnvZ from E. coli
+     |      Number of features: 1
+     |      Per letter annotation for: secondary_structure
+     |      Seq('MAAGVKQLADDRTLLMAGVSHDLRTPLTRIRLATEMMSEQDGYLAESINKDIEE...YLR')
+     |      
+     |      Finally, indexing with a simple integer is shorthand for pulling out
+     |      that letter from the sequence directly:
+     |      
+     |      >>> rec[5]
+     |      'K'
+     |      >>> rec.seq[5]
+     |      'K'
+     |  
+     |  __gt__(self, other)
+     |      Define the greater-than operand (not implemented).
+     |  
+     |  __init__(self, seq, id='<unknown id>', name='<unknown name>', description='<unknown description>', dbxrefs=None, features=None, annotations=None, letter_annotations=None)
+     |      Create a SeqRecord.
+     |      
+     |      Arguments:
+     |       - seq         - Sequence, required (Seq or MutableSeq)
+     |       - id          - Sequence identifier, recommended (string)
+     |       - name        - Sequence name, optional (string)
+     |       - description - Sequence description, optional (string)
+     |       - dbxrefs     - Database cross references, optional (list of strings)
+     |       - features    - Any (sub)features, optional (list of SeqFeature objects)
+     |       - annotations - Dictionary of annotations for the whole sequence
+     |       - letter_annotations - Dictionary of per-letter-annotations, values
+     |         should be strings, list or tuples of the same length as the full
+     |         sequence.
+     |      
+     |      You will typically use Bio.SeqIO to read in sequences from files as
+     |      SeqRecord objects.  However, you may want to create your own SeqRecord
+     |      objects directly.
+     |      
+     |      Note that while an id is optional, we strongly recommend you supply a
+     |      unique id string for each record.  This is especially important
+     |      if you wish to write your sequences to a file.
+     |      
+     |      You can create a 'blank' SeqRecord object, and then populate the
+     |      attributes later.
+     |  
+     |  __iter__(self)
+     |      Iterate over the letters in the sequence.
+     |      
+     |      For example, using Bio.SeqIO to read in a protein FASTA file:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Fasta/loveliesbleeding.pro", "fasta")
+     |      >>> for amino in record:
+     |      ...     print(amino)
+     |      ...     if amino == "L": break
+     |      X
+     |      A
+     |      G
+     |      L
+     |      >>> print(record.seq[3])
+     |      L
+     |      
+     |      This is just a shortcut for iterating over the sequence directly:
+     |      
+     |      >>> for amino in record.seq:
+     |      ...     print(amino)
+     |      ...     if amino == "L": break
+     |      X
+     |      A
+     |      G
+     |      L
+     |      >>> print(record.seq[3])
+     |      L
+     |      
+     |      Note that this does not facilitate iteration together with any
+     |      per-letter-annotation.  However, you can achieve that using the
+     |      python zip function on the record (or its sequence) and the relevant
+     |      per-letter-annotation:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> rec = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (rec.id, rec.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(rec.letter_annotations))
+     |      ['solexa_quality']
+     |      >>> for nuc, qual in zip(rec, rec.letter_annotations["solexa_quality"]):
+     |      ...     if qual > 35:
+     |      ...         print("%s %i" % (nuc, qual))
+     |      A 40
+     |      C 39
+     |      G 38
+     |      T 37
+     |      A 36
+     |      
+     |      You may agree that using zip(rec.seq, ...) is more explicit than using
+     |      zip(rec, ...) as shown above.
+     |  
+     |  __le__(self, other)
+     |      Define the less-than-or-equal-to operand (not implemented).
+     |  
+     |  __len__(self)
+     |      Return the length of the sequence.
+     |      
+     |      For example, using Bio.SeqIO to read in a FASTA nucleotide file:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Fasta/sweetpea.nu", "fasta")
+     |      >>> len(record)
+     |      309
+     |      >>> len(record.seq)
+     |      309
+     |  
+     |  __lt__(self, other)
+     |      Define the less-than operand (not implemented).
+     |  
+     |  __ne__(self, other)
+     |      Define the not-equal-to operand (not implemented).
+     |  
+     |  __radd__(self, other)
+     |      Add another sequence or string to this sequence (from the left).
+     |      
+     |      This method handles adding a Seq object (or similar, e.g. MutableSeq)
+     |      or a plain Python string (on the left) to a SeqRecord (on the right).
+     |      See the __add__ method for more details, but for example:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (record.id, record.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(record.letter_annotations))
+     |      ['solexa_quality']
+     |      
+     |      >>> new = "ACT" + record
+     |      >>> print("%s %s" % (new.id, new.seq))
+     |      slxa_0001_1_0001_01 ACTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(new.letter_annotations))
+     |      []
+     |  
+     |  __repr__(self)
+     |      Return a concise summary of the record for debugging (string).
+     |      
+     |      The python built in function repr works by calling the object's __repr__
+     |      method.  e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> rec = SeqRecord(Seq("MASRGVNKVILVGNLGQDPEVRYMPNGGAVANITLATSESWRDKAT"
+     |      ...                     "GEMKEQTEWHRVVLFGKLAEVASEYLRKGSQVYIEGQLRTRKWTDQ"
+     |      ...                     "SGQDRYTTEVVVNVGGTMQMLGGRQGGGAPAGGNIGGGQPQGGWGQ"
+     |      ...                     "PQQPQGGNQFSGGAQSRPQQSAPAAPSNEPPMDFDDDIPF"),
+     |      ...                 id="NP_418483.1", name="b4059",
+     |      ...                 description="ssDNA-binding protein",
+     |      ...                 dbxrefs=["ASAP:13298", "GI:16131885", "GeneID:948570"])
+     |      >>> print(repr(rec))
+     |      SeqRecord(seq=Seq('MASRGVNKVILVGNLGQDPEVRYMPNGGAVANITLATSESWRDKATGEMKEQTE...IPF'), id='NP_418483.1', name='b4059', description='ssDNA-binding protein', dbxrefs=['ASAP:13298', 'GI:16131885', 'GeneID:948570'])
+     |      
+     |      At the python prompt you can also use this shorthand:
+     |      
+     |      >>> rec
+     |      SeqRecord(seq=Seq('MASRGVNKVILVGNLGQDPEVRYMPNGGAVANITLATSESWRDKATGEMKEQTE...IPF'), id='NP_418483.1', name='b4059', description='ssDNA-binding protein', dbxrefs=['ASAP:13298', 'GI:16131885', 'GeneID:948570'])
+     |      
+     |      Note that long sequences are shown truncated. Also note that any
+     |      annotations, letter_annotations and features are not shown (as they
+     |      would lead to a very long string).
+     |  
+     |  __str__(self)
+     |      Return a human readable summary of the record and its annotation (string).
+     |      
+     |      The python built in function str works by calling the object's __str__
+     |      method.  e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> record = SeqRecord(Seq("MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF"),
+     |      ...                    id="YP_025292.1", name="HokC",
+     |      ...                    description="toxic membrane protein, small")
+     |      >>> print(str(record))
+     |      ID: YP_025292.1
+     |      Name: HokC
+     |      Description: toxic membrane protein, small
+     |      Number of features: 0
+     |      Seq('MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF')
+     |      
+     |      In this example you don't actually need to call str explicitly, as the
+     |      print command does this automatically:
+     |      
+     |      >>> print(record)
+     |      ID: YP_025292.1
+     |      Name: HokC
+     |      Description: toxic membrane protein, small
+     |      Number of features: 0
+     |      Seq('MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF')
+     |      
+     |      Note that long sequences are shown truncated.
+     |  
+     |  count(self, sub, start=None, end=None)
+     |      Return the number of non-overlapping occurrences of sub in seq[start:end].
+     |      
+     |      Optional arguments start and end are interpreted as in slice notation.
+     |      This method behaves as the count method of Python strings.
+     |  
+     |  format(self, format)
+     |      Return the record as a string in the specified file format.
+     |      
+     |      The format should be a lower case string supported as an output
+     |      format by Bio.SeqIO, which is used to turn the SeqRecord into a
+     |      string.  e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> record = SeqRecord(Seq("MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF"),
+     |      ...                    id="YP_025292.1", name="HokC",
+     |      ...                    description="toxic membrane protein")
+     |      >>> record.format("fasta")
+     |      '>YP_025292.1 toxic membrane protein\nMKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF\n'
+     |      >>> print(record.format("fasta"))
+     |      >YP_025292.1 toxic membrane protein
+     |      MKQHKAMIVALIVICITAVVAALVTRKDLCEVHIRTGQTEVAVF
+     |      <BLANKLINE>
+     |      
+     |      The Python print function automatically appends a new line, meaning
+     |      in this example a blank line is shown.  If you look at the string
+     |      representation you can see there is a trailing new line (shown as
+     |      slash n) which is important when writing to a file or if
+     |      concatenating multiple sequence strings together.
+     |      
+     |      Note that this method will NOT work on every possible file format
+     |      supported by Bio.SeqIO (e.g. some are for multiple sequences only,
+     |      and binary formats are not supported).
+     |  
+     |  islower(self)
+     |      Return True if all ASCII characters in the record's sequence are lowercase.
+     |      
+     |      If there are no cased characters, the method returns False.
+     |  
+     |  isupper(self)
+     |      Return True if all ASCII characters in the record's sequence are uppercase.
+     |      
+     |      If there are no cased characters, the method returns False.
+     |  
+     |  lower(self)
+     |      Return a copy of the record with a lower case sequence.
+     |      
+     |      All the annotation is preserved unchanged. e.g.
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Fasta/aster.pro", "fasta")
+     |      >>> print(record.format("fasta"))
+     |      >gi|3298468|dbj|BAA31520.1| SAMIPF
+     |      GGHVNPAVTFGAFVGGNITLLRGIVYIIAQLLGSTVACLLLKFVTNDMAVGVFSLSAGVG
+     |      VTNALVFEIVMTFGLVYTVYATAIDPKKGSLGTIAPIAIGFIVGANI
+     |      <BLANKLINE>
+     |      >>> print(record.lower().format("fasta"))
+     |      >gi|3298468|dbj|BAA31520.1| SAMIPF
+     |      gghvnpavtfgafvggnitllrgivyiiaqllgstvaclllkfvtndmavgvfslsagvg
+     |      vtnalvfeivmtfglvytvyataidpkkgslgtiapiaigfivgani
+     |      <BLANKLINE>
+     |      
+     |      To take a more annotation rich example,
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> old = SeqIO.read("EMBL/TRBG361.embl", "embl")
+     |      >>> len(old.features)
+     |      3
+     |      >>> new = old.lower()
+     |      >>> len(old.features) == len(new.features)
+     |      True
+     |      >>> old.annotations["organism"] == new.annotations["organism"]
+     |      True
+     |      >>> old.dbxrefs == new.dbxrefs
+     |      True
+     |  
+     |  reverse_complement(self, id=False, name=False, description=False, features=True, annotations=False, letter_annotations=True, dbxrefs=False)
+     |      Return new SeqRecord with reverse complement sequence.
+     |      
+     |      By default the new record does NOT preserve the sequence identifier,
+     |      name, description, general annotation or database cross-references -
+     |      these are unlikely to apply to the reversed sequence.
+     |      
+     |      You can specify the returned record's id, name and description as
+     |      strings, or True to keep that of the parent, or False for a default.
+     |      
+     |      You can specify the returned record's features with a list of
+     |      SeqFeature objects, or True to keep that of the parent, or False to
+     |      omit them. The default is to keep the original features (with the
+     |      strand and locations adjusted).
+     |      
+     |      You can also specify both the returned record's annotations and
+     |      letter_annotations as dictionaries, True to keep that of the parent,
+     |      or False to omit them. The default is to keep the original
+     |      annotations (with the letter annotations reversed).
+     |      
+     |      To show what happens to the pre-letter annotations, consider an
+     |      example Solexa variant FASTQ file with a single entry, which we'll
+     |      read in as a SeqRecord:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (record.id, record.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(record.letter_annotations))
+     |      ['solexa_quality']
+     |      >>> print(record.letter_annotations["solexa_quality"])
+     |      [40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5]
+     |      
+     |      Now take the reverse complement, here we explicitly give a new
+     |      identifier (the old identifier with a suffix):
+     |      
+     |      >>> rc_record = record.reverse_complement(id=record.id + "_rc")
+     |      >>> print("%s %s" % (rc_record.id, rc_record.seq))
+     |      slxa_0001_1_0001_01_rc NNNNNNACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT
+     |      
+     |      Notice that the per-letter-annotations have also been reversed,
+     |      although this may not be appropriate for all cases.
+     |      
+     |      >>> print(rc_record.letter_annotations["solexa_quality"])
+     |      [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+     |      
+     |      Now for the features, we need a different example. Parsing a GenBank
+     |      file is probably the easiest way to get an nice example with features
+     |      in it...
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> with open("GenBank/pBAD30.gb") as handle:
+     |      ...     plasmid = SeqIO.read(handle, "gb")
+     |      >>> print("%s %i" % (plasmid.id, len(plasmid)))
+     |      pBAD30 4923
+     |      >>> plasmid.seq
+     |      Seq('GCTAGCGGAGTGTATACTGGCTTACTATGTTGGCACTGATGAGGGTGTCAGTGA...ATG')
+     |      >>> len(plasmid.features)
+     |      13
+     |      
+     |      Now, let's take the reverse complement of this whole plasmid:
+     |      
+     |      >>> rc_plasmid = plasmid.reverse_complement(id=plasmid.id+"_rc")
+     |      >>> print("%s %i" % (rc_plasmid.id, len(rc_plasmid)))
+     |      pBAD30_rc 4923
+     |      >>> rc_plasmid.seq
+     |      Seq('CATGGGCAAATATTATACGCAAGGCGACAAGGTGCTGATGCCGCTGGCGATTCA...AGC')
+     |      >>> len(rc_plasmid.features)
+     |      13
+     |      
+     |      Let's compare the first CDS feature - it has gone from being the
+     |      second feature (index 1) to the second last feature (index -2), its
+     |      strand has changed, and the location switched round.
+     |      
+     |      >>> print(plasmid.features[1])
+     |      type: CDS
+     |      location: [1081:1960](-)
+     |      qualifiers:
+     |          Key: label, Value: ['araC']
+     |          Key: note, Value: ['araC regulator of the arabinose BAD promoter']
+     |          Key: vntifkey, Value: ['4']
+     |      <BLANKLINE>
+     |      >>> print(rc_plasmid.features[-2])
+     |      type: CDS
+     |      location: [2963:3842](+)
+     |      qualifiers:
+     |          Key: label, Value: ['araC']
+     |          Key: note, Value: ['araC regulator of the arabinose BAD promoter']
+     |          Key: vntifkey, Value: ['4']
+     |      <BLANKLINE>
+     |      
+     |      You can check this new location, based on the length of the plasmid:
+     |      
+     |      >>> len(plasmid) - 1081
+     |      3842
+     |      >>> len(plasmid) - 1960
+     |      2963
+     |      
+     |      Note that if the SeqFeature annotation includes any strand specific
+     |      information (e.g. base changes for a SNP), this information is not
+     |      amended, and would need correction after the reverse complement.
+     |      
+     |      Note trying to reverse complement a protein SeqRecord raises an
+     |      exception:
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> protein_rec = SeqRecord(Seq("MAIVMGR"), id="Test",
+     |      ...                         annotations={"molecule_type": "protein"})
+     |      >>> protein_rec.reverse_complement()
+     |      Traceback (most recent call last):
+     |         ...
+     |      ValueError: Proteins do not have complements!
+     |      
+     |      If you have RNA without any U bases, it must be annotated as RNA
+     |      otherwise it will be treated as DNA by default with A mapped to T:
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> rna1 = SeqRecord(Seq("ACG"), id="Test")
+     |      >>> rna2 = SeqRecord(Seq("ACG"), id="Test", annotations={"molecule_type": "RNA"})
+     |      >>> print(rna1.reverse_complement(id="RC", description="unk").format("fasta"))
+     |      >RC unk
+     |      CGT
+     |      <BLANKLINE>
+     |      >>> print(rna2.reverse_complement(id="RC", description="RNA").format("fasta"))
+     |      >RC RNA
+     |      CGU
+     |      <BLANKLINE>
+     |      
+     |      Also note you can reverse complement a SeqRecord using a MutableSeq:
+     |      
+     |      >>> from Bio.Seq import MutableSeq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> rec = SeqRecord(MutableSeq("ACGT"), id="Test")
+     |      >>> rec.seq[0] = "T"
+     |      >>> print("%s %s" % (rec.id, rec.seq))
+     |      Test TCGT
+     |      >>> rc = rec.reverse_complement(id=True)
+     |      >>> print("%s %s" % (rc.id, rc.seq))
+     |      Test ACGA
+     |  
+     |  translate(self, table='Standard', stop_symbol='*', to_stop=False, cds=False, gap=None, id=False, name=False, description=False, features=False, annotations=False, letter_annotations=False, dbxrefs=False)
+     |      Return new SeqRecord with translated sequence.
+     |      
+     |      This calls the record's .seq.translate() method (which describes
+     |      the translation related arguments, like table for the genetic code),
+     |      
+     |      By default the new record does NOT preserve the sequence identifier,
+     |      name, description, general annotation or database cross-references -
+     |      these are unlikely to apply to the translated sequence.
+     |      
+     |      You can specify the returned record's id, name and description as
+     |      strings, or True to keep that of the parent, or False for a default.
+     |      
+     |      You can specify the returned record's features with a list of
+     |      SeqFeature objects, or False (default) to omit them.
+     |      
+     |      You can also specify both the returned record's annotations and
+     |      letter_annotations as dictionaries, True to keep that of the parent
+     |      (annotations only), or False (default) to omit them.
+     |      
+     |      e.g. Loading a FASTA gene and translating it,
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> gene_record = SeqIO.read("Fasta/sweetpea.nu", "fasta")
+     |      >>> print(gene_record.format("fasta"))
+     |      >gi|3176602|gb|U78617.1|LOU78617 Lathyrus odoratus phytochrome A (PHYA) gene, partial cds
+     |      CAGGCTGCGCGGTTTCTATTTATGAAGAACAAGGTCCGTATGATAGTTGATTGTCATGCA
+     |      AAACATGTGAAGGTTCTTCAAGACGAAAAACTCCCATTTGATTTGACTCTGTGCGGTTCG
+     |      ACCTTAAGAGCTCCACATAGTTGCCATTTGCAGTACATGGCTAACATGGATTCAATTGCT
+     |      TCATTGGTTATGGCAGTGGTCGTCAATGACAGCGATGAAGATGGAGATAGCCGTGACGCA
+     |      GTTCTACCACAAAAGAAAAAGAGACTTTGGGGTTTGGTAGTTTGTCATAACACTACTCCG
+     |      AGGTTTGTT
+     |      <BLANKLINE>
+     |      
+     |      And now translating the record, specifying the new ID and description:
+     |      
+     |      >>> protein_record = gene_record.translate(table=11,
+     |      ...                                        id="phya",
+     |      ...                                        description="translation")
+     |      >>> print(protein_record.format("fasta"))
+     |      >phya translation
+     |      QAARFLFMKNKVRMIVDCHAKHVKVLQDEKLPFDLTLCGSTLRAPHSCHLQYMANMDSIA
+     |      SLVMAVVVNDSDEDGDSRDAVLPQKKKRLWGLVVCHNTTPRFV
+     |      <BLANKLINE>
+     |  
+     |  upper(self)
+     |      Return a copy of the record with an upper case sequence.
+     |      
+     |      All the annotation is preserved unchanged. e.g.
+     |      
+     |      >>> from Bio.Seq import Seq
+     |      >>> from Bio.SeqRecord import SeqRecord
+     |      >>> record = SeqRecord(Seq("acgtACGT"), id="Test",
+     |      ...                    description = "Made up for this example")
+     |      >>> record.letter_annotations["phred_quality"] = [1, 2, 3, 4, 5, 6, 7, 8]
+     |      >>> print(record.upper().format("fastq"))
+     |      @Test Made up for this example
+     |      ACGTACGT
+     |      +
+     |      "#$%&'()
+     |      <BLANKLINE>
+     |      
+     |      Naturally, there is a matching lower method:
+     |      
+     |      >>> print(record.lower().format("fastq"))
+     |      @Test Made up for this example
+     |      acgtacgt
+     |      +
+     |      "#$%&'()
+     |      <BLANKLINE>
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |  
+     |  letter_annotations
+     |      Dictionary of per-letter-annotation for the sequence.
+     |      
+     |      For example, this can hold quality scores used in FASTQ or QUAL files.
+     |      Consider this example using Bio.SeqIO to read in an example Solexa
+     |      variant FASTQ file as a SeqRecord:
+     |      
+     |      >>> from Bio import SeqIO
+     |      >>> record = SeqIO.read("Quality/solexa_faked.fastq", "fastq-solexa")
+     |      >>> print("%s %s" % (record.id, record.seq))
+     |      slxa_0001_1_0001_01 ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTNNNNNN
+     |      >>> print(list(record.letter_annotations))
+     |      ['solexa_quality']
+     |      >>> print(record.letter_annotations["solexa_quality"])
+     |      [40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5]
+     |      
+     |      The letter_annotations get sliced automatically if you slice the
+     |      parent SeqRecord, for example taking the last ten bases:
+     |      
+     |      >>> sub_record = record[-10:]
+     |      >>> print("%s %s" % (sub_record.id, sub_record.seq))
+     |      slxa_0001_1_0001_01 ACGTNNNNNN
+     |      >>> print(sub_record.letter_annotations["solexa_quality"])
+     |      [4, 3, 2, 1, 0, -1, -2, -3, -4, -5]
+     |      
+     |      Any python sequence (i.e. list, tuple or string) can be recorded in
+     |      the SeqRecord's letter_annotations dictionary as long as the length
+     |      matches that of the SeqRecord's sequence.  e.g.
+     |      
+     |      >>> len(sub_record.letter_annotations)
+     |      1
+     |      >>> sub_record.letter_annotations["dummy"] = "abcdefghij"
+     |      >>> len(sub_record.letter_annotations)
+     |      2
+     |      
+     |      You can delete entries from the letter_annotations dictionary as usual:
+     |      
+     |      >>> del sub_record.letter_annotations["solexa_quality"]
+     |      >>> sub_record.letter_annotations
+     |      {'dummy': 'abcdefghij'}
+     |      
+     |      You can completely clear the dictionary easily as follows:
+     |      
+     |      >>> sub_record.letter_annotations = {}
+     |      >>> sub_record.letter_annotations
+     |      {}
+     |      
+     |      Note that if replacing the record's sequence with a sequence of a
+     |      different length you must first clear the letter_annotations dict.
+     |  
+     |  seq
+     |      The sequence itself, as a Seq or MutableSeq object.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  __hash__ = None
+    
+
+
+
+```python
+# create seq record
+from Bio.Seq import Seq
+```
+
+
+```python
+simple_seq = Seq("GATC")
+```
+
+
+```python
+simple_seq_r = SeqRecord(simple_seq)
+```
+
+
+```python
+simple_seq_r
+```
+
+
+
+
+    SeqRecord(seq=Seq('GATC'), id='<unknown id>', name='<unknown name>', description='<unknown description>', dbxrefs=[])
+
+
+
+
+```python
+# can pass the id to it
+simple_seq_r.id = "AC12345"
+```
+
+
+```python
+simple_seq_r.description = "Made up sequence for the VBD computational biology class"
+```
+
+
+```python
+print(simple_seq_r.description)
+```
+
+    Made up sequence for the VBD computational biology class
+
+
+
+```python
+simple_seq_r.seq
+```
+
+
+
+
+    Seq('GATC')
+
+
+
+
+```python
+# now we have lots of info on it, way to story seq with annotation
+simple_seq_r
+```
+
+
+
+
+    SeqRecord(seq=Seq('GATC'), id='AC12345', name='<unknown name>', description='Made up sequence for the VBD computational biology class', dbxrefs=[])
+
+
+
+
+```python
+simple_seq_r.annotations["evidence"] = "None. this is just example"
+```
+
+
+```python
+print(simple_seq_r.annotations["evidence"])
+```
+
+    None. this is just example
+
+
+
+```python
+#all stored in simple seq are but hidden
+simple_seq_r
+```
+
+
+
+
+    SeqRecord(seq=Seq('GATC'), id='AC12345', name='<unknown name>', description='Made up sequence for the VBD computational biology class', dbxrefs=[])
+
+
+
+
+```python
+#per letter annotations
+simple_seq_r.letter_annotations["phred_quality"] = [40, 40, 38, 30]
+```
+
+
+```python
+print(simple_seq_r.letter_annotations)
+```
+
+    {'phred_quality': [40, 40, 38, 30]}
+
+
+
+```python
+# https://raw.githubusercontent.com/biopython/biopython/master/Tests/GenBank/NC_005816.fna
+```
+
+
+```python
+from Bio import SeqIO
+```
+
+
+```python
+record = SeqIO.read("NC_005816.fna.txt", "fasta")
+```
+# now we have all these annotations
+record
+
+```python
+record.seq
+```
+
+
+
+
+    Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG')
+
+
+
+
+```python
+record.id
+```
+
+
+
+
+    'gi|45478711|ref|NC_005816.1|'
+
+
+
+
+```python
+record.description
+```
+
+
+
+
+    'gi|45478711|ref|NC_005816.1| Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence'
+
+
+
+
+```python
+# you can only get info that is provided in fasta file
+record.dbxrefs
+```
+
+
+
+
+    []
+
+
+
+
+```python
+record.annotations
+```
+
+
+
+
+    {}
+
+
+
+
+```python
+record.features
+```
+
+
+
+
+    []
+
+
+
+
+```python
+#https://raw.githubusercontent.com/biopython/biopython/master/Tests/GenBank/NC_005816.gb
+```
+
+
+```python
+record = SeqIO.read("NC_005816.gb.txt", "genbank")
+```
+
+
+```python
+record
+```
+
+
+
+
+    SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=['Project:58037'])
+
+
+
+
+```python
+record.seq
+```
+
+
+
+
+    Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG')
+
+
+
+
+```python
+record.id
+```
+
+
+
+
+    'NC_005816.1'
+
+
+
+
+```python
+record.name
+```
+
+
+
+
+    'NC_005816'
+
+
+
+
+```python
+record.description
+```
+
+
+
+
+    'Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence'
+
+
+
+
+```python
+# genbank doesnt give rec annotations for their files
+record.letter_annotations
+```
+
+
+
+
+    {}
+
+
+
+
+```python
+len(record.annotations)
+```
+
+
+
+
+    13
+
+
+
+
+```python
+# where dna is from
+record.annotations["source"]
+```
+
+
+
+
+    'Yersinia pestis biovar Microtus str. 91001'
+
+
+
+
+```python
+record.dbxrefs
+```
+
+
+
+
+    ['Project:58037']
+
+
+
+
+```python
+# how many featurs in table
+len(record.features)
+```
+
+
+
+
+    41
+
+
+
+
+```python
+from Bio import SeqFeature
+```
+
+
+```python
+start_pos = SeqFeature.AfterPosition(5)
+```
+
+
+```python
+end_pos = SeqFeature.BetweenPosition(9, left = 8, right = 9)
+```
+
+
+```python
+# can annotate and give Ambiguous answers (not written in stone info) ^^^
+
+```
+
+
+```python
+# set location
+my_location = SeqFeature.SimpleLocation(start_pos, end_pos)
+```
+
+
+```python
+print(my_location)
+```
+
+    [>5:(8^9)]
+
+
+
+```python
+my_location.start
+```
+
+
+
+
+    AfterPosition(5)
+
+
+
+
+```python
+my_location.end
+```
+
+
+
+
+    BetweenPosition(9, left=8, right=9)
+
+
+
+
+```python
+# want to shorten it 
+int(my_location.end)
+```
+
+
+
+
+    9
+
+
+
+
+```python
+int(my_location.start)
+```
+
+
+
+
+    5
+
+
+
+
+```python
+exact_location = SeqFeature.SimpleLocation(5,9)
+```
+
+
+```python
+print(exact_location)
+```
+
+    [5:9]
+
+
+
+```python
+exact_location.start
+```
+
+
+
+
+    ExactPosition(5)
+
+
+
+
+```python
+# moding and changning anotations
+```
+
+
+```python
+record = SeqIO.read("NC_005816.gb.txt", "genbank")
+```
+
+
+```python
+record
+```
+
+
+
+
+    SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=['Project:58037'])
+
+
+
+
+```python
+len(record)
+```
+
+
+
+
+    9609
+
+
+
+
+```python
+len(record.features)
+```
+
+
+
+
+    41
+
+
+
+
+```python
+record.dbxrefs
+```
+
+
+
+
+    ['Project:58037']
+
+
+
+
+```python
+# all things we can pull up
+record.annotations.keys()
+```
+
+
+
+
+    dict_keys(['molecule_type', 'topology', 'data_file_division', 'date', 'accessions', 'sequence_version', 'gi', 'keywords', 'source', 'organism', 'taxonomy', 'references', 'comment'])
+
+
+
+
+```python
+# since circular genome, who is to say where start and stop is. we can shift it
+shifted = record[2000:] + record[:2000]
+```
+
+
+```python
+shifted
+```
+
+
+
+
+    SeqRecord(seq=Seq('GATACGCAGTCATATTTTTTACACAATTCTCTAATCCCGACAAGGTCGTAGGTC...GGA'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=[])
+
+
+
+
+```python
+#havent changed info but chnaged start
+len(shifted)
+```
+
+
+
+
+    9609
+
+
+
+
+```python
+# lost a feature
+len(shifted.features)
+```
+
+
+
+
+    40
+
+
+
+
+```python
+shifted.annotations.keys()
+```
+
+
+
+
+    dict_keys(['molecule_type'])
+
+
+
+
+```python
+#nothing anymore
+shifted.dbxrefs
+```
+
+
+
+
+    []
+
+
+
+
+```python
+shifted.dbxrefs = record.dbxrefs[:]
+```
+
+
+```python
+shifted.dbxrefs
+```
+
+
+
+
+    ['Project:58037']
+
+
+
+
+```python
+shifted.annotations = record.annotations.copy()
+```
+
+
+```python
+shifted.annotations.keys()
+```
+
+
+
+
+    dict_keys(['molecule_type', 'topology', 'data_file_division', 'date', 'accessions', 'sequence_version', 'gi', 'keywords', 'source', 'organism', 'taxonomy', 'references', 'comment'])
+
+
+
+
+```python
+record
+```
+
+
+
+
+    SeqRecord(seq=Seq('TGTAACGAACGGTGCAATAGTGATCCACACCCAACGCCTGAAATCAGATCCAGG...CTG'), id='NC_005816.1', name='NC_005816', description='Yersinia pestis biovar Microtus str. 91001 plasmid pPCP1, complete sequence', dbxrefs=['Project:58037'])
+
+
+
+
+```python
+# print first value as string, then present next for as integers 
+print("%s %i %i %i %i" % (record.id, len(record), len(record.features), len(record.dbxrefs), len(record.annotations)))
+```
+
+    NC_005816.1 9609 41 1 13
+
+
+
+```python
+rc = record.reverse_complement(id = "Testing")
+```
+
+
+```python
+rc
+```
+
+
+
+
+    SeqRecord(seq=Seq('CAGGGGTCGGGGTACGCATTCCCTCATGCGTCAATATTATCTGGCATTGCGATG...ACA'), id='Testing', name='<unknown name>', description='<unknown description>', dbxrefs=[])
+
+
+
+
+```python
+#make sure not to do duplicates of already made
+print("%s %i %i %i %i" % (rc.id, len(rc), len(rc.features), len(rc.dbxrefs), len(rc.annotations)))
+```
+
+    Testing 9609 41 0 0
+
+
+
+```python
+
+```
+CHALLENGE PROJECT 1 AND BLAST
+```python
+from Bio.Blast import NCBIWWW
+```
+
+
+```python
+NCBIWWW.email = "emmacgibson03@gmail.com"
+```
+
+
+```python
+from Bio import SeqIO
+```
+
+
+```python
+record = SeqIO.read("cancer.fasta", format = "fasta")
+```
+
+
+```python
+print(record)
+```
+
+    ID: NC_000005.10:c159330487-159314780
+    Name: NC_000005.10:c159330487-159314780
+    Description: NC_000005.10:c159330487-159314780 Homo sapiens chromosome 5, GRCh38.p14 Primary Assembly
+    Number of features: 0
+    Seq('AGAAGAAACAACATCTGTTTCAGGGCCATTGGACTCTCCGTCCTGCCCAGAGCA...ATA')
+
+
+
+```python
+result_handle = NCBIWWW.qblast("blastn", "nt", record.seq)
+```
+
+
+```python
+with open("cancer.fasta", "w") as out_handle:
+    out_handle.write(result_handle.read())
+result_handle.close()
+```
+
+
+```python
+from Bio.Blast import NCBIXML
+```
+
+
+```python
+
+```
+```python
+from Bio.Blast import NCBIWWW
+```
+
+
+```python
+NCBIWWW.email = "emmacgibson03@gmail.com"
+```
+
+
+```python
+result_handle = NCBIWWW.qblast("blastn", "nt", "8332116")
+```
+
+
+```python
+from Bio import SeqIO
+```
+
+
+```python
+record = SeqIO.read("m_cold.fasta.txt", format = "fasta")
+```
+
+
+```python
+print(record)
+```
+
+    ID: gi|8332116|gb|BE037100.1|BE037100
+    Name: gi|8332116|gb|BE037100.1|BE037100
+    Description: gi|8332116|gb|BE037100.1|BE037100 MP14H09 MP Mesembryanthemum crystallinum cDNA 5' similar to cold acclimation protein, mRNA sequence
+    Number of features: 0
+    Seq('CACTAGTACTCGAGCGTNCTGCACCAATTCGGCACGAGCAAGTGACTACGTTNT...TTC')
+
+
+
+```python
+result_handle = NCBIWWW.qblast("blastn", "nt", record.seq)
+```
+
+
+```python
+with open ("m_cold.fasta.txt", "w") as out_handle:
+    out_handle.write(result_handle.read())
+    result_handle.close()
+```
+
+
+```python
+from Bio.Blast import NCBIXML
+```
+
+
+```python
+result_handle = open("my_blast.xml")
+```
+
+
+OPEN CV (1-3)
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+```
+
+
+```python
+import cv2
+```
+
+
+```python
+img = cv2.imread("mushroom.jpeg")
+```
+
+
+```python
+type(img)
+```
+
+
+
+
+    numpy.ndarray
+
+
+
+
+```python
+img_wrong = cv2.imread('wrong/path/doesnot/abcdegh.jpg')
+```
+
+
+```python
+type(img_wrong)
+```
+
+
+
+
+    NoneType
+
+
+
+
+```python
+# this means we have loaded the incorrect image
+# this is good for checking
+```
+
+
+```python
+plt.imshow(img)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0ede1c290>
+
+
+
+
+![png](output_7_1.png)
+
+
+
+```python
+# they turn blue bc the package we are usign expects the differntet colors we are using
+```
+
+
+```python
+fix_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+```
+
+
+```python
+plt.imshow(fix_img)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0ecd47b90>
+
+
+
+
+![png](output_10_1.png)
+
+
+
+```python
+#now the photo is fixed!
+```
+
+
+```python
+# make gray images
+img_gray = cv2.imread("mushroom.jpeg", cv2.IMREAD_GRAYSCALE)
+img_gray.shape
+```
+
+
+
+
+    (360, 578)
+
+
+
+
+```python
+plt.imshow(img_gray)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0ebcb4c10>
+
+
+
+
+![png](output_13_1.png)
+
+
+
+```python
+# have to transform it again
+plt.imshow(img_gray, cmap = "gray")
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eb49cb50>
+
+
+
+
+![png](output_14_1.png)
+
+
+
+```python
+# resizeing image
+fix_img.shape
+```
+
+
+
+
+    (360, 578, 3)
+
+
+
+
+```python
+new_img = cv2.resize(fix_img,(1000,400))
+plt.imshow(new_img)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eb409b90>
+
+
+
+
+![png](output_16_1.png)
+
+
+
+```python
+new_img.shape
+```
+
+
+
+
+    (400, 1000, 3)
+
+
+
+
+```python
+w_ratio = 0.5
+h_ratio = 0.5
+
+new_img = cv2.resize(fix_img, (0,0), fix_img, w_ratio, h_ratio)
+```
+
+
+```python
+plt.imshow(new_img)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eb3821d0>
+
+
+
+
+![png](output_19_1.png)
+
+
+
+```python
+# even though it looks the same, the scale is different 
+```
+
+
+```python
+new_img.shape
+```
+
+
+
+
+    (180, 289, 3)
+
+
+
+
+```python
+# can do flip images
+flip_img = cv2.flip(fix_img, 0)
+plt.imshow(flip_img)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eb2ea750>
+
+
+
+
+![png](output_22_1.png)
+
+
+
+```python
+flip_img2 = cv2.flip(fix_img, -1)
+plt.imshow(flip_img2)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eb25f590>
+
+
+
+
+![png](output_23_1.png)
+
+
+
+```python
+# saving 
+type(fix_img)
+```
+
+
+
+
+    numpy.ndarray
+
+
+
+
+```python
+cv2.imwrite('mushroom_fixed_image.jpg', fix_img)
+```
+
+
+
+
+    True
+
+
+
+
+```python
+img = cv2.imread("mushroom.jpeg")
+```
+
+
+```python
+plt.imshow(img)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eb251510>
+
+
+
+
+![png](output_27_1.png)
+
+
+
+```python
+img1 = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+```
+
+
+```python
+plt.imshow(img1)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eb1ba390>
+
+
+
+
+![png](output_29_1.png)
+
+
+
+```python
+# convert other img formats
+img2 = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+```
+
+
+```python
+plt.imshow(img2)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eb126190>
+
+
+
+
+![png](output_31_1.png)
+
+
+
+```python
+img3 = cv2.cvtColor(img, cv2.COLOR_BGR2HLS)
+```
+
+
+```python
+plt.imshow(img3)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eb101710>
+
+
+
+
+![png](output_33_1.png)
+
+
+
+```python
+img1 = cv2.imread('copy.jpeg')
+img2 = cv2.imread("mushroom.jpeg")
+```
+
+
+```python
+plt.imshow(img1)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eaede8d0>
+
+
+
+
+![png](output_35_1.png)
+
+
+
+```python
+img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
+img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)
+```
+
+
+```python
+plt.imshow(img1)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eae49490>
+
+
+
+
+![png](output_37_1.png)
+
+
+
+```python
+plt.imshow(img2)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eadb2510>
+
+
+
+
+![png](output_38_1.png)
+
+
+
+```python
+img1 = cv2.resize(img1, (1200, 1200))
+img2 = cv2.resize(img2, (1200, 1200))
+```
+
+
+```python
+alpha = 0.5
+beta = 0.5
+```
+
+
+```python
+blended = cv2.addWeighted(img1, alpha, img2, beta, gamma=0)
+```
+
+
+```python
+plt.imshow(blended)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0ea0c31d0>
+
+
+
+
+![png](output_42_1.png)
+
+
+
+```python
+# alpha is how transperaent it is
+alpha = 0.8
+beta = 0.2
+
+blended1 = cv2.addWeighted(img1, alpha, img2, beta, 0)
+```
+
+
+```python
+plt.imshow(blended1)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0e9c8a4d0>
+
+
+
+
+![png](output_44_1.png)
+
+
+
+```python
+# alpha is how transperaent it is
+alpha = 0.2
+beta = 0.8
+
+blended1 = cv2.addWeighted(img1, alpha, img2, beta, 0)
+```
+
+
+```python
+plt.imshow(blended1)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0e9befa10>
+
+
+
+
+![png](output_46_1.png)
+
+
+
+```python
+img1 = cv2.imread('copy.jpeg')
+img2 = cv2.imread('mushroom.jpeg')
+
+img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
+img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)
+
+img1 = cv2.resize(img1, (600, 600))
+```
+
+
+```python
+large_img = img1
+small_img = img2
+
+x_offset = 0
+y_offset = 0
+
+x_end = x_offset + small_img.shape[1]
+y_end = y_offset + small_img.shape[0]
+
+large_img[y_offset:y_end, x_offset:x_end] = small_img
+
+plt.imshow(large_img)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0ead28a50>
+
+
+
+
+![png](output_48_1.png)
+
+
+
+```python
+img = cv2.imread('rainbow.jpg')
+```
+
+
+```python
+plt.imshow(img)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0ead096d0>
+
+
+
+
+![png](output_50_1.png)
+
+
+
+```python
+# thresholding 
+img = cv2.imread('rainbow.jpg', 0)
+```
+
+
+```python
+plt.imshow(img, cmap = 'gray')
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eaea30d0>
+
+
+
+
+![png](output_52_1.png)
+
+
+
+```python
+ret1, thresh1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+```
+
+
+```python
+ret1
+```
+
+
+
+
+    127.0
+
+
+
+
+```python
+plt.imshow(thresh1, cmap = 'gray')
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eaf57ed0>
+
+
+
+
+![png](output_55_1.png)
+
+
+
+```python
+# can inverse the limits
+img2 = cv2.imread('rainbow.jpg', 0)
+ret1, thresh1 = cv2.threshold(img2, 127, 255, cv2.THRESH_TRUNC)
+plt.imshow(thresh1, cmap = "gray")
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eabaf8d0>
+
+
+
+
+![png](output_56_1.png)
+
+
+
+```python
+
+```
+
+
+```python
+img3 = cv2.imread('rainbow.jpg', 0)
+ret1, thresh1 = cv2.threshold(img3, 127, 255, cv2.THRESH_TOZERO)
+plt.imshow(thresh1, cmap = "gray")
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eab93490>
+
+
+
+
+![png](output_58_1.png)
+
+
+
+```python
+img_r = cv2.imread('crossword.jpg', 0)
+plt.imshow(img_r, cmap = 'gray')
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fd0eaa38790>
+
+
+
+
+![png](output_59_1.png)
+
+
+
+```python
+def show_pic(img):
+    fig = plt.figure(figsize = (15, 15))
+    ax = fig.add_subplot(111)
+    ax.imshow(img, cmap = "gray")
+```
+
+
+```python
+show_pic(img_r)
+```
+
+
+![png](output_61_0.png)
+
+
+
+```python
+ret, th1 = cv2.threshold(img_r, 127, 255, cv2.THRESH_BINARY)
+show_pic(th1)
+```
+
+
+![png](output_62_0.png)
+
+
+
+```python
+ret, th1 = cv2.threshold(img_r, 200, 255, cv2.THRESH_BINARY)
+show_pic(th1)
+```
+
+
+![png](output_63_0.png)
+
+
+
+```python
+ret, th2 = cv2.threshold(img_r, 11, 8, cv2.THRESH_BINARY)
+show_pic(th2)
+```
+
+
+![png](output_64_0.png)
+
+
+
+```python
+blended = cv2.addWeighted(src1 = th1, alpha = 0.6,
+                         src2 = th2, beta = 0.4, gamma = 0)
+
+show_pic(blended)
+```
+
+
+![png](output_65_0.png)
+
+
+
+```python
+th3 = cv2.adaptiveThreshold(img_r, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 11, 8)
+
+blended = cv2.addWeighted(src1=th1, alpha=0.6,
+                         src=th3,beta=0.4, gamma=0)
+
+show_pic(blended)
+```
+
+
+    ---------------------------------------------------------------------------
+
+    error                                     Traceback (most recent call last)
+
+    <ipython-input-98-5643a0fdec08> in <module>
+          2 
+          3 blended = cv2.addWeighted(src1=th1, alpha=0.6,
+    ----> 4                          src=th3,beta=0.4, gamma=0)
+          5 
+          6 show_pic(blended)
+
+
+    error: OpenCV(4.9.0) :-1: error: (-5:Bad argument) in function 'addWeighted'
+    > Overload resolution failed:
+    >  - addWeighted() missing required argument 'src2' (pos 3)
+    >  - addWeighted() missing required argument 'src2' (pos 3)
+
+
+
+
+```python
+
+```
+
+ASPECT DETECTION
+```python
+# we are going to detect features (corners) 
+```
+
+
+```python
+# we wont use roots
+```
+
+
+```python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+```
+
+
+```python
+flat_chess = cv2.imread('Chessboard_green.png')
+flat_chess = cv2.cvtColor(flat_chess, cv2.COLOR_BGR2RGB)
+plt.imshow(flat_chess)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7ff1883f5450>
+
+
+
+
+![png](output_3_1.png)
+
+
+
+```python
+gray_flat_chess = cv2.cvtColor(flat_chess, cv2.COLOR_BGR2GRAY)
+plt.imshow(gray_flat_chess, cmap = "gray")
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7ff1883584d0>
+
+
+
+
+![png](output_4_1.png)
+
+
+
+```python
+real_chess = cv2.imread("chessboard.jpeg")
+real_chess = cv2.cvtColor(real_chess, cv2.COLOR_BGR2RGB)
+```
+
+
+```python
+plt.imshow(real_chess)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7ff18833a4d0>
+
+
+
+
+![png](output_6_1.png)
+
+
+
+```python
+gray = np.float32(gray_flat_chess)
+dst = cv2.cornerHarris(src = gray, blockSize = 2, ksize = 3, k = 0.04)\
+
+dst = cv2.dilate(dst, None)
+```
+
+
+```python
+# anytime you see a corner make it re
+flat_chess[dst>0.01*dst.max()] = [255,0,0]
+
+plt.imshow(flat_chess)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7ff1882a2fd0>
+
+
+
+
+![png](output_8_1.png)
+
+
+
+```python
+# red dots on corners again
+gray = np.float32(real_chess)
+dst = cv2.cornerHarris(src = gray, blockSize =2, ksize=3, k=0.04)
+dst = cv2.dilate(dst, None)
+
+real_chess[dst>0.01*dst.max()] = [255, 0, 0]
+
+plt.imshow(real_chess)
+```
+
+
+    ---------------------------------------------------------------------------
+
+    error                                     Traceback (most recent call last)
+
+    <ipython-input-28-b869d8b5c5ac> in <module>
+          1 # red dots on corners again
+          2 gray = np.float32(real_chess)
+    ----> 3 dst = cv2.cornerHarris(src = gray, blockSize =2, ksize=3, k=0.04)
+          4 dst = cv2.dilate(dst, None)
+          5 
+
+
+    error: OpenCV(4.9.0) /io/opencv/modules/imgproc/src/corner.cpp:254: error: (-215:Assertion failed) src.type() == CV_8UC1 || src.type() == CV_32FC1 in function 'cornerEigenValsVecs'
+
+
+
+
+```python
+#Shi-Tomasi Corner Detection
+
+corners = cv2.goodFeaturesToTrack(gray_flat_chess, 64, 0.01, 10)
+
+```
+
+
+```python
+corners = np.int0(corners)
+
+for i in corners:
+    x,y = i.rave1()
+    cv2.circle(flat_chess, (x,y),3,(255,0,0), -1)
+    
+plt.imshow(flat_chess)
+```
+
+
+    ---------------------------------------------------------------------------
+
+    AttributeError                            Traceback (most recent call last)
+
+    <ipython-input-31-5dbfa08efb06> in <module>
+          2 
+          3 for i in corners:
+    ----> 4     x,y = i.rave1()
+          5     cv2.circle(flat_chess, (x,y),3,(255,0,0), -1)
+          6 
+
+
+    AttributeError: 'numpy.ndarray' object has no attribute 'rave1'
+
+
+
+```python
+# does red and green dots on corners (an overlap of the two)
+corners = cv2.goodFeaturesToTrack(gray_real_chess, 100, 0.01, 10)
+
+corners = np.int0(corners)
+
+for i in corners: 
+    x, y = i.rave()
+    cv2.circle(real_chess, (x,y), 2, (0,255,0), -1)
+plt.imshow(real_chess)    
+
+```
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-32-b2fcbbffa528> in <module>
+    ----> 1 corners = cv2.goodFeaturesToTrack(gray_real_chess, 100, 0.01, 10)
+          2 
+          3 corners = np.int0(corners)
+          4 
+          5 for i in corners:
+
+
+    NameError: name 'gray_real_chess' is not defined
+
+
+
+```python
+# edge detection 
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+```
+
+
+```python
+img = cv2.imread("mushroom.jpeg")
+plt.imshow(img)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7ff188225590>
+
+
+
+
+![png](output_14_1.png)
+
+
+
+```python
+# we have weird colors but we dont have to change it for edge detection
+
+edges = cv2.Canny(image =img, threshold1 = 127, threshold2 =127)
+plt.imshow(edges)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7ff18818e410>
+
+
+
+
+![png](output_15_1.png)
+
+
+
+```python
+#this is our med color value
+med_value = np.median(img)
+med_value
+```
+
+
+
+
+    255.0
+
+
+
+
+```python
+lower = int(max,(0, 0.7*med_value))
+upper = int(min(255, 1.3*med_value))
+
+edges = cv2.Canny(img, threshold1 = lower, threshold2 = upper)
+
+plt.imshow(edges)
+```
+
+
+    ---------------------------------------------------------------------------
+
+    TypeError                                 Traceback (most recent call last)
+
+    <ipython-input-38-ab94ce640359> in <module>
+    ----> 1 lower = int(max,(0, 0.7*med_value))
+          2 upper = int(min(255, 1.3*med_value))
+          3 
+          4 edges = cv2.Canny(img, threshold1 = lower, threshold2 = upper)
+          5 
+
+
+    TypeError: 'tuple' object cannot be interpreted as an integer
+
+
+
+```python
+blurred_img = cv2.blur(img, ksize = (5,5))
+
+edges = cv2.Canny(image=blurred_img,
+                 threshold1 = lower,
+                 threshold2 = upper)
+plt.imshow(edges)
+```
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-39-7a44a90214c5> in <module>
+          2 
+          3 edges = cv2.Canny(image=blurred_img,
+    ----> 4                  threshold1 = lower,
+          5                  threshold2 = upper)
+          6 plt.imshow(edges)
+
+
+    NameError: name 'lower' is not defined
+
+
+
+```python
+blurred_img = cv2.blur(img, ksize = (5,5))
+
+edges = cv2.Canny(image=blurred_img,
+                 threshold1 = lower,
+                 threshold2 = upper +50)
+plt.imshow(edges)
+```
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-40-4f0504e79c97> in <module>
+          2 
+          3 edges = cv2.Canny(image=blurred_img,
+    ----> 4                  threshold1 = lower,
+          5                  threshold2 = upper +50)
+          6 plt.imshow(edges)
+
+
+    NameError: name 'lower' is not defined
+
+
+
+```python
+blurred_img = cv2.blur(img, ksize = (5,5))
+
+edges = cv2.Canny(image=blurred_img,
+                 threshold1 = lower,
+                 threshold2 = upper +100)
+plt.imshow(edges)
+```
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-41-608f8546e98b> in <module>
+          2 
+          3 edges = cv2.Canny(image=blurred_img,
+    ----> 4                  threshold1 = lower,
+          5                  threshold2 = upper +100)
+          6 plt.imshow(edges)
+
+
+    NameError: name 'lower' is not defined
+
+
+
+```python
+blurred_img = cv2.blur(img, ksize = (5,5))
+
+edges = cv2.Canny(image=blurred_img,
+                 threshold1 = lower,
+                 threshold2 = upper +60)
+plt.imshow(edges)
+```
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-42-3678f06d6d63> in <module>
+          2 
+          3 edges = cv2.Canny(image=blurred_img,
+    ----> 4                  threshold1 = lower,
+          5                  threshold2 = upper +60)
+          6 plt.imshow(edges)
+
+
+    NameError: name 'lower' is not defined
+
+
+
+```python
+
+```
+```python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+```
+
+
+```python
+full = cv2.imread('sunflower_train.jpeg')
+```
+
+
+```python
+full = cv2.cvtColor(full, cv2.COLOR_BGR2RGB)
+```
+
+
+```python
+plt.imshow(full)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fefbf78a610>
+
+
+
+
+![png](output_3_1.png)
+
+
+
+```python
+test = cv2.imread('sunflower_other.jpeg')
+```
+
+
+```python
+test = cv2.cvtColor(test, cv2.COLOR_BGR2RGB)
+```
+
+
+```python
+plt.imshow(test)
+```
+
+
+
+
+    <matplotlib.image.AxesImage at 0x7fefbf740b50>
+
+
+
+
+![png](output_6_1.png)
+
+
+
+```python
+print('test image shape:', full.shape)
+print("traning image shape:", test.shape)
+```
+
+    test image shape: (612, 612, 3)
+    traning image shape: (1999, 3229, 3)
+
+
+
+```python
+methods = ['cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_MORMED', 'cv2.TM_CCORR', 'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED']
+```
+
+
+```python
+for m in methods: 
+    
+    test_copy = test.copy()
+    method = eval(m)
+    
+    res = cv2.matchTemplate(test_copy, full, method)
+    
+    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+    
+    if method in [cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]:
+        top_left = min_loc
+    else:
+        top_left = max_loc
+        
+        height, width, channels = full.shape
+        bottom_right = (top_left[0] + width, top_left[1] + height)
+        
+        cv2.rectangle(test_copy, top_left, bottom_right, (255,0,0), 10)
+        
+        plt.subplot(121)
+        plt.imshow(res)
+        plt.title("Heatmap of template matching")
+        plt.subplot(122)
+        plt.imshow(test_copy)
+        plt.title("Detection of template")
+        
+        plt.suptitle(m)
+        
+        plt.show()
+        print('\n')
+        print('\n')
+```
+
+
+![png](output_9_0.png)
+
+
+    
+    
+    
+    
+
+
+
+    ---------------------------------------------------------------------------
+
+    AttributeError                            Traceback (most recent call last)
+
+    <ipython-input-17-905772a1c4db> in <module>
+          2 
+          3     test_copy = test.copy()
+    ----> 4     method = eval(m)
+          5 
+          6     res = cv2.matchTemplate(test_copy, full, method)
+
+
+    <string> in <module>
+
+
+    AttributeError: module 'cv2' has no attribute 'TM_CCOEFF_MORMED'
+
+
+
+```python
+
+```
+
+FEATURE DETECTION
+```python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+```
+
+
+```python
+def display(img, cmap = 'gray'):
+    fig = plt.figure(figsize = (12,10))
+    ax = fig.add_subplot(111)
+    ax.imshow(img, cmap = 'gray')
+
+```
+
+
+```python
+apple_jacks = cv2.imread('apple_jacks.jpeg')
+display(apple_jacks)
+```
+
+
+![png](output_2_0.png)
+
+
+
+```python
+cereals = cv2.imread("cereal.jpeg", 0)
+display(cereals)
+```
+
+
+![png](output_3_0.png)
+
+
+
+```python
+orb = cv2.ORB_create()
+
+kp1,des1 = orb.detectAndCompute(apple_jacks, mask=None)
+kp2,des2 = orb.detectAndCompute(cereals, mask=None)
+```
+
+
+```python
+bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck = True)
+matches = bf.match(des1, des2)
+```
+
+
+```python
+matches = sorted(matches, key = lambda x:x.distance)
+```
+
+
+```python
+apple_jacks_matches = cv2.drawMatches(apple_jacks, kp1, cereals, kp2, matches[:25], None, flags = 2)
+```
+
+
+```python
+display(apple_jacks_matches)
+```
+
+
+![png](output_8_0.png)
+
+
+
+```python
+sift = cv2.SIFT_create()
+```
+
+
+```python
+kp1, des1 = sift.detectAndCompute(apple_jacks, None)
+kp2, des2 = sift.detectAndCompute(cereals, None)
+```
+
+
+```python
+bf = cv2.BFMatcher()
+matches = bf.knnMatch(des1, des2, k=2)
+```
+
+
+```python
+good = []
+
+for match1, match2 in matches:
+    if match1.distance < 0.75*match2.distance:
+        good.append([match1])
+```
+
+
+```python
+print('length of total matches:', len(matches))
+print('length of good matches:', len(good))
+
+```
+
+    length of total matches: 19243
+    length of good matches: 277
+
+
+
+```python
+sift_matches = cv2.drawMatchesKnn(apple_jacks, kp1, cereals, kp2, good, None, flags = 2)
+display(sift_matches)
+```
+
+
+![png](output_14_0.png)
+
+
+
+```python
+sift = cv2.SIFT_create()
+
+kp1, des1 = sift.detectAndCompute(apple_jacks, None)
+kp2, des2 = sift.detectAndCompute(cereals, None)
+```
+
+
+```python
+flann_index_KDtree = 0
+index_params = dict(algorithm=flann_index_KDtree, trees = 5)
+search_params = dict(checks=50)
+```
+
+
+```python
+flann = cv2.FlannBasedMatcher(index_params, search_params)
+
+matches = flann.knnMatch(des1, k=2)
+
+good = []
+
+for match1, match2, in matches:
+    if match1.distance < 0.75*match2.distance:
+        good.append([match1])
+```
+
+
+```python
+flann_matches = cv2.drawMatchesKnn(apple_jacks, kp1, cereals, kp2, good, None, flags = 0)
+display(flann_matches)
+```
+
+
+![png](output_18_0.png)
+
+
+
+```python
+# add a mask to it
+sift = cv2.SIFT_create()
+
+kp1, des1 = sift.detectAndCompute(apple_jacks, None)
+kp2, des2 = sift.detectAndCompute(cereals, None)
+```
+
+
+```python
+flann_index_KDtree = 0
+index_params = dict(algorithm=flann_index_KDtree, trees = 5)
+search_params = dict(checks=50)
+```
+
+
+```python
+flann = cv2.FlannBasedMatcher(index_params, search_params)
+
+matches = flann.knnMatch(des1, k=2)
+
+```
+
+
+```python
+matcherMask = [[0,0] for i in range(len(matches))]
+```
+
+
+```python
+for i, (match1, match2) in enumerate(matches):
+    if match1.distance <0.75*match2.distance:
+        matchesMask[i] = [1,0]
+        
+draw_params = dict(matchColor = (0,255,0),
+                   singlePointColor = (255,0,0)
+                  matchesMask = matchesMask,
+                  flags = 0)
+```
+
+
+      File "<ipython-input-45-ac9bfc84d965>", line 7
+        matchesMask= matchesMask,
+                  ^
+    SyntaxError: invalid syntax
+
+
+
+
+```python
+flann_matches = cv2.drawMatchesKnn(apple_jacks, kp1, cereals, kp2, matches, None, **draw_params)
+
+display(flann_matches)
+```
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-46-7fb7bd008413> in <module>
+    ----> 1 flann_matches = cv2.drawMatchesKnn(apple_jacks, kp1, cereals, kp2, matches, None, **draw_params)
+          2 
+          3 display(flann_matches)
+
+
+    NameError: name 'draw_params' is not defined
+
+
+
+```python
+display(flann_matches)
+```
+
+
+![png](output_25_0.png)
+
+
+
+```python
+
+```
+
